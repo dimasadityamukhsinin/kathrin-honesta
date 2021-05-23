@@ -1,0 +1,39 @@
+@import '../components/variables';
+
+.navigation {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    opacity: .25;
+    background: rgba(255, 226, 192, .25);
+    font-size: $font-xs;
+    pointer-events: none;
+    transition: opacity .3s;
+
+    &>div {
+        padding: 5px 0px;
+
+        button {
+            pointer-events: auto;
+
+            &:hover {
+                color: blue;
+            }
+        }
+
+        a {
+            pointer-events: auto;
+            margin: 0 5px;
+        }
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}

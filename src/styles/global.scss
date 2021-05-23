@@ -1,0 +1,141 @@
+@import 'components/normalize';
+@import 'components/variables';
+@import 'components/font';
+@import 'components/cursor';
+@import 'components/keyframe';
+
+* {
+    box-sizing: border-box;
+    font-family: 'Acumin Pro';
+}
+
+body {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.navScroll {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &>div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 50px;
+        align-items: center;
+
+        .toggle & {
+            border: 2px solid blue;
+        }
+
+        font-size: $font-sm;
+
+        a {
+            pointer-events: all;
+            color: black;
+        }
+    }
+
+    .scrollTopAbout {
+        justify-content: flex-start !important;
+    }
+
+    &>div:first-child {
+        @include respond-to("sm") {
+            justify-content: flex-end;
+            position: relative;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: -1;
+                width: 100%;
+                height: 15vh;
+                background: linear-gradient(180deg, hsla(0, 0%, 100%, .85), hsla(0, 0%, 100%, 0));
+            }
+
+            a {
+
+                padding: 0 20px;
+            }
+        }
+    }
+
+    &>div:last-child {
+
+        &>div {
+            position: absolute;
+        }
+
+        &>div:first-child {
+            animation: scrollUpDown 2s linear infinite forwards;
+
+            @include respond-to("sm") {
+                opacity: 0;
+            }
+        }
+
+        &>div:last-child {
+            opacity: 0;
+
+            @include respond-to("sm") {
+                padding-bottom: 60px;
+            }
+        }
+
+        @include respond-to("sm") {
+            justify-content: flex-start;
+            position: relative;
+            padding-left: 20px;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: -1;
+                width: 100%;
+                height: 15vh;
+                background: linear-gradient(0deg, hsla(0, 0%, 100%, .85), hsla(0, 0%, 100%, 0));
+            }
+        }
+    }
+
+    .scrollEndAbout {
+        animation: scrollEndMobile .3s linear;
+    }
+
+    .scrollEnd {
+        &>div:first-child {
+            display: none;
+        }
+
+        &>div:last-child {
+            opacity: 1 !important;
+            animation: scrollEndMobile 1s linear !important;
+
+            @include respond-to("sm") {
+                animation: scrollEnd .3s linear;
+            }
+        }
+    }
+}

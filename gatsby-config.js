@@ -13,10 +13,10 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: "uploads",
+        path: "./static/assets/",
       },
-      __key: "images",
+      __key: "uploads",
     },
     {
       resolve: "gatsby-source-filesystem",

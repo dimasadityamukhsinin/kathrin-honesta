@@ -1,0 +1,170 @@
+@import '../components/variables';
+
+#about {
+    padding: 50px 0px;
+
+    &>div:first-child {
+
+        &::before {
+            content: "";
+            display: block;
+            height: 85px;
+            width: 325px;
+            background: $color-green;
+            margin: 0 auto;
+
+            @include respond-to("sm") {
+                height: 60px;
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        @include respond-to("sm") {
+            padding-left: 20px;
+            padding-right: 80px;
+        }
+    }
+
+    &>div:nth-child(2) {
+        padding: 35px 0px;
+        max-width: 1075px;
+        margin: 0 auto;
+
+        @include respond-to("xl") {
+            padding: 35px 40px;
+        }
+
+        @include respond-to("sm") {
+            padding: 35px 20px;
+        }
+
+        p {
+            margin: 0 auto;
+            text-align: center;
+            font-size: 42px;
+            font-family: "Adobe Jenson Pro";
+
+            @include respond-to("sm") {
+                text-align: start;
+                font-size: 28px;
+            }
+        }
+    }
+
+    &>div:nth-child(3) {
+        padding: 35px 0px;
+        max-width: 1075px;
+        margin: 0 auto;
+
+        @include respond-to("xl") {
+            padding: 35px 40px;
+        }
+
+        @include respond-to("sm") {
+            padding: 35px 20px;
+            margin: 0;
+        }
+
+        span {
+            display: block;
+            text-align: center;
+            font-size: 42px;
+            font-family: "Adobe Jenson Pro";
+            padding: 10px 0px;
+
+            @include respond-to("sm") {
+                font-size: 28px;
+                text-align: start;
+            }
+        }
+
+        .clients {
+            margin: 0 120px;
+            padding: 40px;
+            background: $color-grey;
+            display: grid;
+            grid-template-columns: 150px 150px 150px 150px;
+            justify-content: space-between;
+            grid-gap: 40px;
+
+            @include respond-to("xl") {
+                grid-template-columns: 120px 120px 120px 120px;
+            }
+
+            @include respond-to("lg") {
+                margin: 0 80px;
+                grid-template-columns: 100px 100px 100px 100px;
+                grid-gap: 10px;
+            }
+
+            @include respond-to("sm") {
+                margin: 0;
+                padding: 0;
+                background: none;
+                grid-template-columns: 100px 100px 100px;
+            }
+        }
+
+        .press {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 40px;
+
+            @include respond-to("sm") {
+                align-items: start;
+            }
+
+            a {
+                color: black;
+                font-size: 18px;
+                padding-top: 5px;
+
+                &:not(a:first-child) {
+                    padding-top: 10px;
+                }
+
+                @include respond-to("sm") {
+                    padding-top: 10px;
+                    opacity: .75;
+
+                    &:hover {
+                        opacity: 1;
+                        transition: .5s;
+                    }
+                }
+            }
+        }
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @include respond-to("sm") {
+                align-items: start;
+            }
+
+            a {
+                color: black;
+                font-size: 18px;
+                padding-top: 5px;
+
+                &:not(a:first-child) {
+                    padding-top: 10px;
+                }
+
+                @include respond-to("sm") {
+                    padding-top: 10px;
+                    opacity: .75;
+
+                    &:hover {
+                        opacity: 1;
+                        transition: .5s;
+                    }
+                }
+            }
+        }
+    }
+}

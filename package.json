@@ -17,6 +17,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "framer-motion": "^4.1.17",
     "gatsby": "^3.4.1",
     "gatsby-plugin-image": "^1.5.0",
     "gatsby-plugin-mdx": "^2.5.0",
@@ -26,10 +27,15 @@
     "gatsby-plugin-sharp": "^3.5.0",
     "gatsby-source-filesystem": "^3.5.0",
     "gatsby-transformer-sharp": "^3.5.0",
+    "gsap": "^3.6.1",
+    "locomotive-scroll": "^4.1.1",
     "netlify-cms-app": "^2.15.6",
     "react": "^17.0.1",
+    "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-intersection-observer": "^8.32.0",
+    "react-scroll-wheel-handler": "^2.0.1",
     "sass": "^1.32.13"
   }
 }

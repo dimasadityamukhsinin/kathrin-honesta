@@ -1,0 +1,92 @@
+@import '../components/variables';
+
+#projects {
+
+    &>div {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        body:global(.toggle) & {
+            border: 1px solid red;
+        }
+
+        @include respond-to("sm") {
+            padding: 20px;
+            text-align: left;
+            height: auto;
+        }
+
+        &>a {
+            body:global(.toggle) & {
+                border: 1px solid blue;
+            }
+
+            @include respond-to("sm") {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
+            &>div:first-child {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                @include respond-to("sm") {
+                    position: relative;
+                    padding: 20px 0px;
+                }
+
+                span {
+                    color: black;
+                    font-size: 60px;
+                    font-family: "Adobe Jenson Pro";
+
+                    @include respond-to("sm") {
+                        font-size: 42px;
+                    }
+                }
+            }
+
+            &>div:last-child {
+                height: calc(100vh - 130px);
+                display: flex;
+                align-items: center;
+
+                @include respond-to("sm") {
+                    height: auto;
+                    align-items: flex-start;
+                }
+            }
+        }
+
+        p {
+            max-width: 1075px;
+            font-size: 60px;
+            font-family: "Adobe Jenson Pro";
+
+            @include respond-to("sm") {
+                font-size: 42px;
+            }
+        }
+    }
+
+    &>div:first-child {
+        @include respond-to("sm") {
+            min-height: 80vh;
+            height: auto;
+        }
+    }
+
+    &>div:last-child {
+        @include respond-to("sm") {
+            opacity: 0;
+            height: 25vh;
+        }
+    }
+}

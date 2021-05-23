@@ -1,0 +1,91 @@
+body,
+#___gatsby {
+    background: #ffffff;
+}
+
+body.scrollDrag {
+
+    & a,
+    & section {
+        pointer-events: none !important;
+    }
+}
+
+img,
+a {
+    -webkit-user-select: none;
+    /* Safari 3.1+ */
+    -moz-user-select: none;
+    /* Firefox 2+ */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Standard syntax */
+    user-drag: none;
+    -webkit-user-drag: none;
+}
+
+#cursorwrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10000;
+    pointer-events: none;
+    mix-blend-mode: difference;
+
+    & #cursor {
+        width: 16px;
+        height: 16px;
+        position: fixed;
+        z-index: 10001;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+
+        &>svg {
+            width: 100%;
+            height: 100%;
+
+            path {
+                transition: fill 0.2s;
+                fill: white;
+            }
+        }
+
+        &.click {
+            &>svg {
+                path {
+                    fill: black;
+                }
+            }
+        }
+    }
+
+    & #cursor-trail {
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        z-index: 10000;
+        pointer-events: none;
+        border-radius: 20px;
+        border: solid 2px white;
+        transition: width 0.2s, height 0.2s, background 0.2s;
+
+        &.hover {
+            width: 40px;
+            height: 40px;
+        }
+
+        &.click {
+            background: white;
+        }
+    }
+}
+
+body.cursor-enabled {
+    cursor: none;
+
+    & * {
+        cursor: none !important;
+    }
+}

@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "gatsby";
+
+const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
+  const [scrollEnd, setScrollEnd] = useState(false);
+
+  const scrollToTop = () => {
+    // const totalHeight = mainLayout
+    //   ? mainLayout.clientHeight
+    //   : window.innerHeight;
+
+    // let duration = totalHeight / 3;
+
+    // if (duration > 3500) duration = 3500;
+
+    // smoothScrollBar.scrollbar.scrollTo(0, 0, duration, {
+    //   easing: easing.easeOutCubic,
+    // });
+
+    window.scrollTo(0,0);
+  };
+
+  const windowHeight = () =>
+    window.innerHeight ||
+    document.documentElement.clientHeight ||
+    document.getElementsByTagName("body")[0].clientHeight;
+
+  const detectScroll = () => {
+    const currentScroll = window.scrollY;
+    const totalHeight = document.body.clientHeight;
+
+    console.log(totalHeight > 0 &&
+      currentScroll > totalHeight - windowHeight() * 1.1 &&
+      totalHeight > windowHeight() * 1.1)
+
+    if (
+      totalHeight > 0 &&
+      currentScroll > totalHeight - windowHeight() * 1.1 &&
+      totalHeight > windowHeight() * 1.1
+    ) {
+      setScrollEnd(true);
+    } else {
+      setScrollEnd(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", detectScroll, false);
+    return () => {
+      document.removeEventListener("scroll", detectScroll, false);
+    };
+  }, []);
+
+  return (
+    <section className="navScroll">
+      <div>
+        <Link to={`/${topLink}`}>{topTitle}</Link>
+      </div>
+      {backTop ? (
+        <div className={scrollEnd ? "scrollEnd" : null}>
+          <div>Scroll</div>
+          <div>
+            <button onClick={() => scrollToTop()}>Back to Top</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <span>{botTitle}</span>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default NavScroll;
