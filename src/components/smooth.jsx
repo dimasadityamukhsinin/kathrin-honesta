@@ -24,9 +24,8 @@ function SmoothScroll(target, speed, smooth) {
     pos += -delta * speed;
     pos = Math.max(
       0,
-      Math.min(pos, target.scrollHeight - frame.clientHeight + 3)
+      Math.min(pos, target.scrollHeight - frame.clientHeight)
     ); // limit scrolling
-
     if (!moving) update();
   }
 

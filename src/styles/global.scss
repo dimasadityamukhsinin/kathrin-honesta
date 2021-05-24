@@ -9,7 +9,7 @@
     font-family: 'Acumin Pro';
 }
 
-body {
+html {
     overflow: hidden;
 }
 
@@ -50,8 +50,12 @@ p {
         font-size: $font-sm;
 
         a {
-            pointer-events: all;
+            pointer-events: auto;
             color: black;
+        }
+
+        button {
+            pointer-events: auto;
         }
     }
 
@@ -131,10 +135,10 @@ p {
 
         &>div:last-child {
             opacity: 1 !important;
-            animation: scrollEndMobile 1s linear !important;
+            animation: scrollEnd .5s linear !important;
 
             @include respond-to("sm") {
-                animation: scrollEnd .3s linear;
+                animation: scrollEndMobile .3s linear;
             }
         }
     }

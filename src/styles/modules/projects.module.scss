@@ -1,6 +1,8 @@
 @import '../components/variables';
 
 #projects {
+    overflow-x: hidden;
+    overflow: visible;
 
     &>div {
         position: relative;

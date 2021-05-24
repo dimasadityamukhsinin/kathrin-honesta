@@ -17,7 +17,24 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
     //   easing: easing.easeOutCubic,
     // });
 
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
+
+    let duration = window.innerHeight / 3;
+
+    if (duration > 3500) duration = 3500;
+
+    window.scrollTo(0, 0, duration, {
+      easing: {
+        easeOutCubic: (t) => --t * t * t + 1
+      },
+    });
+    // window.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   behavior: "smooth",
+    // });
+    console.log("hello")
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
   };
 
   const windowHeight = () =>
@@ -28,10 +45,10 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
   const detectScroll = () => {
     const currentScroll = window.scrollY;
     const totalHeight = document.body.clientHeight;
+    // console.log(document.body.scrollHeight);
+    // console.log(document.body.scrollHeight);
 
-    console.log(totalHeight > 0 &&
-      currentScroll > totalHeight - windowHeight() * 1.1 &&
-      totalHeight > windowHeight() * 1.1)
+    // console.log(document.body.scrollHeight - document.body.clientHeight)
 
     if (
       totalHeight > 0 &&

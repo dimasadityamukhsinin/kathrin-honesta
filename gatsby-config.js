@@ -2,6 +2,9 @@ module.exports = {
   siteMetadata: {
     title: "My Gatsby Site",
   },
+  flags: {
+    DEV_SSR: false
+   },
   plugins: [
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-sass",

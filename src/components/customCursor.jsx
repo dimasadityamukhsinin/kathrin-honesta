@@ -19,7 +19,7 @@ export default function CustomCursor() {
       let cursorTimeout = null;
       const cursorDisableDelay = 250;
       const cursorDown = (event) => {
-        if (event.which == 3) {
+        if (event.which === 3) {
           event.stopImmediatePropagation();
           return false;
         }
