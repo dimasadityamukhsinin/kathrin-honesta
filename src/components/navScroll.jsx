@@ -47,7 +47,7 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", detectScroll, false);
+    document.addEventListener("scroll", detectScroll, false);
     return () => {
       document.removeEventListener("scroll", detectScroll, false);
     };

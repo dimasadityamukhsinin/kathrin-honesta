@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Navigation from "../navigation";
-import LocomotiveScroll from "locomotive-scroll";
 import { isWinPhone, isAndroid, isIOS } from "react-device-detect";
 
 const MainLayout = ({ children, pageTitle }) => {

@@ -1,8 +1,7 @@
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import React from "react";
 import MainLayout from "../components/layout/mainLayout";
 import * as styles from "../styles/modules/projects.module.scss";
-import { StaticImage } from "gatsby-plugin-image";
 import NavScroll from "../components/navScroll";
 import ProjectSection from "../components/projectSection";
 
@@ -10,7 +9,6 @@ const ProjectsPage = ({ data }) => {
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} />
-      {/* <div style={{ height: "100vh" }}> */}
       <section id={styles.projects} data-scroll-container>
         <div>
           <p>
@@ -76,7 +74,6 @@ const ProjectsPage = ({ data }) => {
           <p>©2020 Kathrin Honesta.</p>
         </div>
       </section>
-      {/* </div> */}
     </MainLayout>
   );
 };
@@ -85,26 +82,17 @@ export const query = graphql`
   query {
     jessica: file(relativePath: { eq: "jessica watson_final.webp" }) {
       childImageSharp {
-        gatsbyImageData(
-          formats: [WEBP],
-          placeholder: BLURRED
-        )
+        gatsbyImageData(formats: [WEBP], placeholder: BLURRED)
       }
     }
     nautilus: file(relativePath: { eq: "nautilus.webp" }) {
       childImageSharp {
-        gatsbyImageData(
-          formats: [WEBP],
-          placeholder: BLURRED
-        )
+        gatsbyImageData(formats: [WEBP], placeholder: BLURRED)
       }
     }
     nursery: file(relativePath: { eq: "Nursery_1.webp" }) {
       childImageSharp {
-        gatsbyImageData(
-          formats: [WEBP],
-          placeholder: BLURRED
-        )
+        gatsbyImageData(formats: [WEBP], placeholder: BLURRED)
       }
     }
   }

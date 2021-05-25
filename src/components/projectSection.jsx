@@ -6,7 +6,6 @@ import anime from "animejs";
 // COMPONENTS
 import { InViewClass } from "../utils/inview";
 import { titleAnimationOptions, imageAnimationOptions } from "./animSettings";
-import { StaticImage } from "gatsby-plugin-image";
 import { windowMatchMedia } from "../utils/mediaTreshold";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
