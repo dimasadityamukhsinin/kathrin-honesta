@@ -25,66 +25,62 @@ const AboutPage = () => {
         <div>
           <span>Selected Clients</span>
           <div className={styles.clients}>
-            <div>
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-            </div>
-            <div>
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="cover"
-              />
-            </div>
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="cover"
+            />
           </div>
           <span>Press</span>
           <div className={styles.press}>

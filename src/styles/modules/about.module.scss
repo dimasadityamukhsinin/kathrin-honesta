@@ -81,35 +81,34 @@
 
         .clients {
             margin: 0 120px;
-            padding: 0 40px;
             padding-bottom: 40px;
+            padding-right: 40px;
             background: $color-grey;
             display: flex;
-            flex-flow: column wrap;
+            flex-flow: row wrap;
+            justify-content: space-between;
 
-            // grid-gap: 40px;
             &>div {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-between;
+                margin-left: 40px;
+                margin-top: 40px;
+                width: 150px;
 
-                &>div {
-                    margin-top: 40px;
-                    height: auto;
-                    width: calc((100% - 40px)/4);
-
-                    @include respond-to("md") {
-                        width: calc((100% - 40px)/2);
-                    }
-
-                    @include respond-to("sm") {
-                        width: calc((100% - 40px)/2);
-                    }
+                @include respond-to("xl") {
+                    width: 170px;
                 }
 
-                // &>div:not(:first-child) {
-                //     margin-left: 30px;
-                // }
+                @include respond-to("lg") {
+                    width: 150px;
+                }
+
+                @include respond-to("md") {
+                    width: 130px;
+                }
+
+                @include respond-to("sm") {
+                    margin-left: 0px;
+                    width: 130px;
+                }
             }
 
             // @include respond-to("xl") {
@@ -122,16 +121,18 @@
             //     grid-gap: 30px;
             // }
 
-            // @include respond-to("md") {
-            //     grid-template-columns: 100px 100px 100px;
-            //     grid-gap: 10px;
-            // }
-
-            @include respond-to("sm") {
+            @include respond-to("md") {
                 margin: 0;
                 padding: 0;
                 background: none;
             }
+
+            // @include respond-to("sm") {
+            //     margin: 0;
+            //     padding: 0;
+            //     background: none;
+            //     grid-template-columns: 80px 80px 80px;
+            // }
         }
 
         .press {
