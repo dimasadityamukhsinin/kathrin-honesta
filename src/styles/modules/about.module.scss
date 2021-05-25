@@ -81,33 +81,56 @@
 
         .clients {
             margin: 0 120px;
-            padding: 40px;
+            padding: 0 40px;
+            padding-bottom: 40px;
             background: $color-grey;
-            display: grid;
-            grid-template-columns: 150px 150px 150px 150px;
-            justify-content: space-between;
-            grid-gap: 40px;
+            display: flex;
+            flex-flow: column wrap;
 
-            @include respond-to("xl") {
-                grid-template-columns: 130px 130px 130px 130px;
-                grid-gap: 20px;
+            // grid-gap: 40px;
+            &>div {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+
+                &>div {
+                    margin-top: 40px;
+                    height: auto;
+                    width: calc((100% - 40px)/4);
+
+                    @include respond-to("md") {
+                        width: calc((100% - 40px)/2);
+                    }
+
+                    @include respond-to("sm") {
+                        width: calc((100% - 40px)/2);
+                    }
+                }
+
+                // &>div:not(:first-child) {
+                //     margin-left: 30px;
+                // }
             }
 
-            @include respond-to("lg") {
-                grid-template-columns: 130px 130px 130px;
-                grid-gap: 30px;
-            }
+            // @include respond-to("xl") {
+            //     grid-template-columns: 130px 130px 130px 130px;
+            //     grid-gap: 20px;
+            // }
 
-            @include respond-to("md") {
-                grid-template-columns: 100px 100px 100px;
-                grid-gap: 10px;
-            }
+            // @include respond-to("lg") {
+            //     grid-template-columns: 130px 130px 130px;
+            //     grid-gap: 30px;
+            // }
+
+            // @include respond-to("md") {
+            //     grid-template-columns: 100px 100px 100px;
+            //     grid-gap: 10px;
+            // }
 
             @include respond-to("sm") {
                 margin: 0;
                 padding: 0;
                 background: none;
-                grid-template-columns: 80px 80px 80px;
             }
         }
 
