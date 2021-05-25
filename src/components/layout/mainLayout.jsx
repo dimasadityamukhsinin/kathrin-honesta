@@ -10,7 +10,6 @@ const MainLayout = ({ children, pageTitle }) => {
 
   useEffect(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    console.log(isWinPhone || isAndroid || isIOS)
     if (isWinPhone || isAndroid || isIOS) {
       document.querySelector("#cursorwrapper").style.display = "none";
     }

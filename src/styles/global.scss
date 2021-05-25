@@ -7,11 +7,16 @@
 * {
     box-sizing: border-box;
     font-family: 'Acumin Pro';
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
-html {
-    overflow: hidden;
-}
+// html {
+//     overflow: hidden;
+// }
 
 a {
     text-decoration: none;
