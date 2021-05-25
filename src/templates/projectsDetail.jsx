@@ -10,7 +10,7 @@ const ProjectsDetail = () => {
         topLink="projects"
         backTop={true}
       />
-      <section>
+      <section data-scroll-container>
         <p>TEST</p>
       </section>
     </MainLayout>

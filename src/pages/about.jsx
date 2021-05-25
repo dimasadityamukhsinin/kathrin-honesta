@@ -13,7 +13,7 @@ const AboutPage = () => {
         topLink="projects"
         botTitle="2020 © Kathrin Honesta"
       />
-      <section id={styles.about}>
+      <section id={styles.about} data-scroll-container>
         <div />
         <div>
           <p>

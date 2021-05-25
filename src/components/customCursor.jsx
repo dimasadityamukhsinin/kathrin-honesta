@@ -12,8 +12,10 @@ export default function CustomCursor() {
       document.body.classList.add("cursor-enabled");
 
       const cursorMove = (e) => {
-        context.cursorSel.current.style.transform = `translate(-50%, -50%) translate(${e.clientX}px, ${e.clientY}px)`;
-        context.cursorTrailSel.current.style.transform = `translate(-50%, -50%) translate(${e.clientX}px, ${e.clientY}px)`;
+        if (context.cursorSel.current)
+          context.cursorSel.current.style.transform = `translate(-50%, -50%) translate(${e.clientX}px, ${e.clientY}px)`;
+        if (context.cursorTrailSel.current)
+          context.cursorTrailSel.current.style.transform = `translate(-50%, -50%) translate(${e.clientX}px, ${e.clientY}px)`;
       };
 
       let cursorTimeout = null;

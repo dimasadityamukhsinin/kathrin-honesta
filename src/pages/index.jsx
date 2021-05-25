@@ -5,7 +5,7 @@ import * as styles from "../styles/modules/landing.module.scss";
 const IndexPage = () => {
   return (
     <MainLayout>
-      <section id={styles.landing}>
+      <section id={styles.landing} data-scroll-container>
         <p>LANDING PAGE</p>
       </section>
     </MainLayout>

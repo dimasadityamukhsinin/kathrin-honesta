@@ -42,12 +42,12 @@
         p {
             margin: 0 auto;
             text-align: center;
-            font-size: 42px;
+            font-size: $font-md;
             font-family: "Adobe Jenson Pro";
 
             @include respond-to("sm") {
                 text-align: start;
-                font-size: 28px;
+                font-size: $font-sm;
             }
         }
     }
@@ -69,12 +69,12 @@
         span {
             display: block;
             text-align: center;
-            font-size: 42px;
+            font-size: $font-md;
             font-family: "Adobe Jenson Pro";
             padding: 10px 0px;
 
             @include respond-to("sm") {
-                font-size: 28px;
+                font-size: $font-sm;
                 text-align: start;
             }
         }
@@ -89,12 +89,17 @@
             grid-gap: 40px;
 
             @include respond-to("xl") {
-                grid-template-columns: 120px 120px 120px 120px;
+                grid-template-columns: 130px 130px 130px 130px;
+                grid-gap: 20px;
             }
 
             @include respond-to("lg") {
-                margin: 0 80px;
-                grid-template-columns: 100px 100px 100px 100px;
+                grid-template-columns: 130px 130px 130px;
+                grid-gap: 30px;
+            }
+
+            @include respond-to("md") {
+                grid-template-columns: 100px 100px 100px;
                 grid-gap: 10px;
             }
 
@@ -102,7 +107,7 @@
                 margin: 0;
                 padding: 0;
                 background: none;
-                grid-template-columns: 100px 100px 100px;
+                grid-template-columns: 80px 80px 80px;
             }
         }
 
@@ -118,7 +123,7 @@
 
             a {
                 color: black;
-                font-size: 18px;
+                font-size: $font-link;
                 padding-top: 5px;
 
                 &:not(a:first-child) {
@@ -148,7 +153,7 @@
 
             a {
                 color: black;
-                font-size: 18px;
+                font-size: $font-link;
                 padding-top: 5px;
 
                 &:not(a:first-child) {

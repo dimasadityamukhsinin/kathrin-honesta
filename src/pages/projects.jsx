@@ -1,48 +1,27 @@
-import { Link } from "gatsby";
-import React, { useEffect, useRef } from "react";
+import { graphql, Link } from "gatsby";
+import React from "react";
 import MainLayout from "../components/layout/mainLayout";
 import * as styles from "../styles/modules/projects.module.scss";
 import { StaticImage } from "gatsby-plugin-image";
 import NavScroll from "../components/navScroll";
-import { useInView } from "react-intersection-observer";
 import ProjectSection from "../components/projectSection";
 
-const ProjectsPage = () => {
-  const contentRef = useRef();
-
-  useEffect(() => {
-    document.addEventListener("scroll", (e) => {
-      console.log(window.scrollY)
-    }, false);
-  },[])
-
+const ProjectsPage = ({ data }) => {
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} />
       {/* <div style={{ height: "100vh" }}> */}
       <section id={styles.projects} data-scroll-container>
-        <div ref={contentRef}>
+        <div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        {/* <ProjectSection
-          link="/"
-          titile="Jessica Watson"
-          image="../images/jessica watson_final.webp"
-        />
-        <ProjectSection
-          link="/"
-          titile="suri-ram"
-          image="../images/Nursery_1.webp"
-        />
-        <ProjectSection
-          link="/"
-          titile="Nautilus"
-          image="../images/nautilus.webp"
-        /> */}
-        <div>
+        <ProjectSection link="/" title="Jessica Watson" image={data.jessica} />
+        <ProjectSection link="/" title="suri-ram" image={data.nursery} />
+        <ProjectSection link="/" title="Nautilus" image={data.nautilus} />
+        {/* <div>
           <Link to="/">
             <div>
               <span>Jessica Watson</span>
@@ -92,7 +71,7 @@ const ProjectsPage = () => {
               />
             </div>
           </Link>
-        </div>
+        </div> */}
         <div>
           <p>©2020 Kathrin Honesta.</p>
         </div>
@@ -101,5 +80,34 @@ const ProjectsPage = () => {
     </MainLayout>
   );
 };
+
+export const query = graphql`
+  query {
+    jessica: file(relativePath: { eq: "jessica watson_final.webp" }) {
+      childImageSharp {
+        gatsbyImageData(
+          formats: [WEBP],
+          placeholder: BLURRED
+        )
+      }
+    }
+    nautilus: file(relativePath: { eq: "nautilus.webp" }) {
+      childImageSharp {
+        gatsbyImageData(
+          formats: [WEBP],
+          placeholder: BLURRED
+        )
+      }
+    }
+    nursery: file(relativePath: { eq: "Nursery_1.webp" }) {
+      childImageSharp {
+        gatsbyImageData(
+          formats: [WEBP],
+          placeholder: BLURRED
+        )
+      }
+    }
+  }
+`;
 
 export default ProjectsPage;

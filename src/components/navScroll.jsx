@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
+import { useAppContext } from "../context/store";
 
 const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
   const [scrollEnd, setScrollEnd] = useState(false);
+  const context = useAppContext();
 
   const scrollToTop = () => {
-    // const totalHeight = mainLayout
-    //   ? mainLayout.clientHeight
-    //   : window.innerHeight;
-
-    // let duration = totalHeight / 3;
-
-    // if (duration > 3500) duration = 3500;
-
-    // smoothScrollBar.scrollbar.scrollTo(0, 0, duration, {
-    //   easing: easing.easeOutCubic,
-    // });
-
-    // window.scrollTo(0,0);
 
     let duration = window.innerHeight / 3;
 
@@ -33,7 +22,7 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
     //   left: 0,
     //   behavior: "smooth",
     // });
-    console.log("hello")
+    // console.log("hello")
     // document.body.scrollTop = document.documentElement.scrollTop = 0;
   };
 
@@ -45,10 +34,6 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
   const detectScroll = () => {
     const currentScroll = window.scrollY;
     const totalHeight = document.body.clientHeight;
-    // console.log(document.body.scrollHeight);
-    // console.log(document.body.scrollHeight);
-
-    // console.log(document.body.scrollHeight - document.body.clientHeight)
 
     if (
       totalHeight > 0 &&
@@ -71,13 +56,13 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
   return (
     <section className="navScroll">
       <div>
-        <Link to={`/${topLink}`}>{topTitle}</Link>
+        <Link to={`/${topLink}`} {...context.cursorHover.current}>{topTitle}</Link>
       </div>
       {backTop ? (
         <div className={scrollEnd ? "scrollEnd" : null}>
           <div>Scroll</div>
           <div>
-            <button onClick={() => scrollToTop()}>Back to Top</button>
+            <button onClick={() => scrollToTop()} {...context.cursorHover.current}>Back to Top</button>
           </div>
         </div>
       ) : (

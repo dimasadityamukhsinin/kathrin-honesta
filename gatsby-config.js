@@ -3,8 +3,8 @@ module.exports = {
     title: "My Gatsby Site",
   },
   flags: {
-    DEV_SSR: false
-   },
+    DEV_SSR: false,
+  },
   plugins: [
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-sass",
@@ -16,10 +16,9 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "uploads",
-        path: "./static/assets/",
+        name: "images",
+        path: `${__dirname}/src/images/`,
       },
-      __key: "uploads",
     },
     {
       resolve: "gatsby-source-filesystem",
@@ -28,6 +27,12 @@ module.exports = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+        layout: require.resolve(`./src/gatsbylayout/index.jsx`),
+      },
     },
   ],
 };

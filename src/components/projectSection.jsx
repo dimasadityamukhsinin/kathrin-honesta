@@ -7,7 +7,8 @@ import anime from "animejs";
 import { InViewClass } from "../utils/inview";
 import { titleAnimationOptions, imageAnimationOptions } from "./animSettings";
 import { StaticImage } from "gatsby-plugin-image";
-// import { mediaWidth, windowMatchMedia } from "utils/mediaTreshold";
+import { windowMatchMedia } from "../utils/mediaTreshold";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const ProjectSection = ({ link, title, image }) => {
   const inviewCompRef = useRef();
@@ -43,37 +44,39 @@ const ProjectSection = ({ link, title, image }) => {
         },
         always: (value) => {
           // console.log('scroll project');
-          //   if (!windowMatchMedia.mobile()) {
-          const progressForImage =
-            (1 +
-              value.percentCenterHeight({
-                speed: 1,
-                buffer: 0,
-              })) /
-            2;
+          if (!windowMatchMedia.mobile()) {
+            const progressForImage =
+              (1 +
+                value.percentCenterHeight({
+                  speed: 1,
+                  buffer: 0,
+                })) /
+              2;
 
-          animeImage.seek(Math.round(animeImage.duration * progressForImage));
+            animeImage.seek(Math.round(animeImage.duration * progressForImage));
 
-          const progressForTitle =
-            (1 +
-              value.percentCenterHeight({
-                speed: 1,
-                buffer: 0,
-              })) /
-            2;
-          if (progressForTitle === 0) {
-            animeTitle.seek(1);
-          } else if (progressForTitle === 1) {
-            animeTitle.seek(animeTitle.duration - 1);
+            const progressForTitle =
+              (1 +
+                value.percentCenterHeight({
+                  speed: 1,
+                  buffer: 0,
+                })) /
+              2;
+            if (progressForTitle === 0) {
+              animeTitle.seek(1);
+            } else if (progressForTitle === 1) {
+              animeTitle.seek(animeTitle.duration - 1);
+            } else {
+              animeTitle.seek(
+                Math.round(animeTitle.duration * progressForTitle)
+              );
+            }
           } else {
-            animeTitle.seek(Math.round(animeTitle.duration * progressForTitle));
+            animeImage.pause();
+            animeTitle.pause();
+            imageCompRef.current.style = {};
+            titleCompRef.current.style = {};
           }
-          //   } else {
-          //     animeImage.pause();
-          //     animeTitle.pause();
-          //     imageCompRef.current.style = {};
-          //     titleCompRef.current.style = {};
-          //   }
         },
         exit: () => {
           // console.log('exit');
@@ -92,18 +95,25 @@ const ProjectSection = ({ link, title, image }) => {
   return (
     <div ref={inviewCompRef}>
       <Link to="/">
-        <div>
-          <span ref={titleCompRef}>{title}</span>
+        <div ref={titleCompRef}>
+          <span>{title}</span>
         </div>
         <div ref={imageCompRef}>
-          <StaticImage
-            src={image}
+          <GatsbyImage
+            image={getImage(image)}
+            alt={title}
+            loading="eager"
+            objectFit="contain"
+            style={{ maxHeight: "100%" }}
+          />
+          {/* <StaticImage
+            src={checkFile(image)}
             alt="Jessica Watson"
             placeholder="blurred"
             loading="eager"
             objectFit="contain"
             style={{ maxHeight: "100%" }}
-          />
+          /> */}
         </div>
       </Link>
     </div>

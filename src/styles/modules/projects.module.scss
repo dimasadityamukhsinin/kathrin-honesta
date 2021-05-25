@@ -1,8 +1,6 @@
 @import '../components/variables';
 
 #projects {
-    overflow-x: hidden;
-    overflow: visible;
 
     &>div {
         position: relative;
@@ -12,6 +10,10 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+
+        @include respond-to("xl") {
+            padding: 0px 60px;
+        }
 
         body:global(.toggle) & {
             border: 1px solid red;
@@ -46,11 +48,11 @@
 
                 span {
                     color: black;
-                    font-size: 60px;
+                    font-size: $font-lg;
                     font-family: "Adobe Jenson Pro";
 
                     @include respond-to("sm") {
-                        font-size: 42px;
+                        font-size: $font-md;
                     }
                 }
             }
@@ -69,11 +71,15 @@
 
         p {
             max-width: 1075px;
-            font-size: 60px;
+            font-size: $font-lg;
             font-family: "Adobe Jenson Pro";
 
+            @include respond-to("xl") {
+                max-width: none;
+            }
+
             @include respond-to("sm") {
-                font-size: 42px;
+                font-size: $font-md;
             }
         }
     }
