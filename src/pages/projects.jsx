@@ -15,12 +15,6 @@ const ProjectsPage = ({ data }) => {
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua."
         />
-        {/* <div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div> */}
         <ProjectSection link="/" title="Jessica Watson" image={data.jessica} />
         <ProjectSection link="/" title="suri-ram" image={data.nursery} />
         <ProjectSection link="/" title="Nautilus" image={data.nautilus} />
@@ -78,9 +72,6 @@ const ProjectsPage = ({ data }) => {
         <TextSection
           content="©2020 Kathrin Honesta."
         />
-        {/* <div>
-          <p>©2020 Kathrin Honesta.</p>
-        </div> */}
       </section>
     </MainLayout>
   );
