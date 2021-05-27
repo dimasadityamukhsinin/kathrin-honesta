@@ -4,18 +4,23 @@ import MainLayout from "../components/layout/mainLayout";
 import * as styles from "../styles/modules/projects.module.scss";
 import NavScroll from "../components/navScroll";
 import ProjectSection from "../components/projectSection";
+import TextSection from "../components/textSection";
 
 const ProjectsPage = ({ data }) => {
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} />
       <section id={styles.projects} data-scroll-container>
-        <div>
+        <TextSection
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+        {/* <div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-        </div>
+        </div> */}
         <ProjectSection link="/" title="Jessica Watson" image={data.jessica} />
         <ProjectSection link="/" title="suri-ram" image={data.nursery} />
         <ProjectSection link="/" title="Nautilus" image={data.nautilus} />
@@ -70,9 +75,12 @@ const ProjectsPage = ({ data }) => {
             </div>
           </Link>
         </div> */}
-        <div>
+        <TextSection
+          content="©2020 Kathrin Honesta."
+        />
+        {/* <div>
           <p>©2020 Kathrin Honesta.</p>
-        </div>
+        </div> */}
       </section>
     </MainLayout>
   );
