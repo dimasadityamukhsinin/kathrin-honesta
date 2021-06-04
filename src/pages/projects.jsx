@@ -329,6 +329,9 @@ const ProjectsPage = ({ data }) => {
 
     main[4].children[0].style.transform = `translateY(-${height3 / 2}px)`;
     main[4].children[0].style.opacity = 0;
+    return () => {
+      window.removeEventListener("scroll", transitionProjects, false);
+    }
   }, []);
 
   return (

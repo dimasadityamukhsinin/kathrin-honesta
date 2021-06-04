@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Navigation from "../navigation";
-import { isWinPhone, isAndroid, isIOS } from "react-device-detect";
 import { motion } from "framer-motion";
 import { useAppContext } from "../../context/store";
+import CustomCursor from "../cursor";
 
 const MainLayout = ({ children, pageTitle }) => {
   const PageTitle = pageTitle
@@ -41,17 +41,18 @@ const MainLayout = ({ children, pageTitle }) => {
 
   useEffect(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    // if (isWinPhone || isAndroid || isIOS) {
-    //   document.querySelector("#cursorwrapper").style.display = "none";
-    // }
 
-    document.addEventListener("scroll", () => {
-      // console.log(window.scrollY)
-      // console.log(Math.max(window.scrollY, 25));
-      const newScrollHeight = Math.ceil(window.scrollY) *50;
-      // console.log(newScrollHeight)
-      const opacity = Math.min(newScrollHeight  , 1);
-    }, false)
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.innerWidth <= 576) {
+          document.getElementById("custom_cursor").style.display = "none";
+        } else {
+          document.getElementById("custom_cursor").removeAttribute("style");
+        }
+      },
+      false
+    );
   }, []);
 
   return (
@@ -75,6 +76,7 @@ const MainLayout = ({ children, pageTitle }) => {
           />
         </Helmet>
         <Navigation />
+        <CustomCursor />
         {children}
       </motion.main>
     </>
