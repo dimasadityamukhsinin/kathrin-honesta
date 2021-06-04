@@ -1,0 +1,129 @@
+.navScroll {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &>div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 50px;
+        align-items: center;
+
+        .toggle & {
+            border: 2px solid blue;
+        }
+
+        font-size: $font-xs;
+
+        a {
+            pointer-events: auto;
+            color: black;
+        }
+
+        button {
+            pointer-events: auto;
+        }
+    }
+
+    .scrollTopAbout {
+        justify-content: flex-start !important;
+    }
+
+    .top {
+        @include respond-to("sm") {
+            justify-content: flex-end;
+            position: relative;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: -1;
+                width: 100%;
+                height: 15vh;
+                background: linear-gradient(180deg, hsla(0, 0%, 100%, .85), hsla(0, 0%, 100%, 0));
+            }
+
+            a {
+
+                padding: 0 20px;
+            }
+        }
+    }
+
+    .bottom {
+        &>div {
+            position: absolute;
+        }
+
+        &>div:first-child {
+            animation: scrollUpDown 2s linear infinite forwards;
+
+            @include respond-to("sm") {
+                opacity: 0;
+            }
+        }
+
+        &>div:last-child {
+            opacity: 0;
+
+            @include respond-to("sm") {
+                padding-bottom: 60px;
+            }
+
+            button {
+                pointer-events: none;
+            }
+        }
+
+        @include respond-to("sm") {
+            justify-content: flex-start;
+            position: relative;
+            padding-left: 20px;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: -1;
+                width: 100%;
+                height: 15vh;
+                background: linear-gradient(0deg, hsla(0, 0%, 100%, .85), hsla(0, 0%, 100%, 0));
+            }
+        }
+    }
+
+    .scrollEndAbout {
+        animation: scrollEndMobile .3s linear;
+    }
+
+    .scrollEnd {
+
+        &>div:first-child {
+            display: none;
+        }
+
+        &>div:last-child {
+            opacity: 1 !important;
+            animation: scrollEnd .5s linear !important;
+
+            button {
+                pointer-events: auto;
+            }
+
+            @include respond-to("sm") {
+                animation: scrollEndMobile .3s linear;
+            }
+        }
+    }
+}

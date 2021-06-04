@@ -3,6 +3,16 @@
 #about {
     padding: 50px 0px;
 
+    body:global(.toggle) & {
+        border: 1px solid red;
+    }
+
+    &>div {
+        body:global(.toggle) & {
+            border: 1px solid blue;
+        }
+    }
+
     &>div:first-child {
 
         &::before {
@@ -27,16 +37,16 @@
     }
 
     &>div:nth-child(2) {
-        padding: 35px 0px;
+        padding: 40px 0px;
         max-width: 1075px;
         margin: 0 auto;
 
         @include respond-to("xl") {
-            padding: 35px 40px;
+            padding: 40px;
         }
 
         @include respond-to("sm") {
-            padding: 35px 20px;
+            padding: 40px 20px;
         }
 
         p {
@@ -53,16 +63,22 @@
     }
 
     &>div:nth-child(3) {
-        padding: 35px 0px;
+        padding-top: 40px;
         max-width: 1075px;
         margin: 0 auto;
 
         @include respond-to("xl") {
-            padding: 35px 40px;
+            padding-top: 40px;
+            padding-bottom: 0;
+            padding-left: 40px;
+            padding-right: 40px;
         }
 
         @include respond-to("sm") {
-            padding: 35px 20px;
+            padding-top: 40px;
+            padding-bottom: 0;
+            padding-left: 20px;
+            padding-right: 20px;
             margin: 0;
         }
 
@@ -79,15 +95,23 @@
             }
         }
 
+        span:last-child {
+            font-size: $font-xs;
+            font-family: 'Acumin Pro';
+        }
+
         .clients {
             margin: 0 120px;
-            padding: 40px;
-            background: $color-grey;
+            padding-bottom: 40px;
             display: flex;
             display: grid;
             grid-gap: 30px;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             flex-flow: row wrap;
+
+            body:global(.toggle) & {
+                border: 1px solid red;
+            }
 
             @include respond-to("md") {
                 grid-template-columns: 1fr 1fr;
@@ -96,7 +120,6 @@
             @include respond-to("md") {
                 margin: 0;
                 padding: 0;
-                background: none;
             }
         }
 
@@ -105,6 +128,10 @@
             flex-direction: column;
             align-items: center;
             padding-bottom: 40px;
+
+            body:global(.toggle) & {
+                border: 1px solid red;
+            }
 
             @include respond-to("sm") {
                 align-items: start;
@@ -135,6 +162,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-bottom: 40px;
+
+            body:global(.toggle) & {
+                border: 1px solid red;
+            }
 
             @include respond-to("sm") {
                 align-items: start;

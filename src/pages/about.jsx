@@ -4,15 +4,14 @@ import * as React from "react";
 import MainLayout from "../components/layout/mainLayout";
 import NavScroll from "../components/navScroll";
 import * as styles from "../styles/modules/about.module.scss";
+import { useAppContext } from "../context/store";
 
 const AboutPage = () => {
+  const context = useAppContext();
+
   return (
     <MainLayout pageTitle="About">
-      <NavScroll
-        topTitle="Close"
-        topLink="projects"
-        botTitle="2020 © Kathrin Honesta"
-      />
+      <NavScroll topTitle="Close" topLink="projects" mobile="back" />
       <section id={styles.about} data-scroll-container>
         <div />
         <div>
@@ -84,16 +83,53 @@ const AboutPage = () => {
           </div>
           <span>Press</span>
           <div className={styles.press}>
-            <Link to="/">Youtube (2019)</Link>
-            <Link to="/">FIMA (2018)</Link>
-            <Link to="/">Tabloit Gadis (2017)</Link>
+            <Link
+              to="/"
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              Youtube (2019)
+            </Link>
+            <Link
+              to="/"
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              FIMA (2018)
+            </Link>
+            <Link
+              to="/"
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              Tabloit Gadis (2017)
+            </Link>
           </div>
           <span>Contact</span>
           <div className={styles.contact}>
-            <Link to="/">hello@kathrinhonesta.com</Link>
-            <Link to="/">behance.net</Link>
-            <Link to="/">facebook.com</Link>
+            <Link
+              to="/"
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              hello@kathrinhonesta.com
+            </Link>
+            <Link
+              to="/"
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              behance.net
+            </Link>
+            <Link
+              to="/"
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              facebook.com
+            </Link>
           </div>
+          <span>2020 © Kathrin Honesta</span>
         </div>
       </section>
     </MainLayout>

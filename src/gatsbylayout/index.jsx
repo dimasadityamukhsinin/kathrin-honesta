@@ -1,13 +1,12 @@
 import React from "react";
-import CustomCursor from "../components/customCursor";
+import Cursor from "../components/cursor/index";
 
 export default function GatsbyLayout({ children }) {
 
   return (
     <>
-      <div id="cursorwrapper">
-        <CustomCursor />
-      </div>
+        {/* <CustomCursor /> */}
+        <Cursor />
       {children}
     </>
   );

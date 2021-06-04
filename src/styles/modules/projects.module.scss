@@ -37,7 +37,7 @@
 
             &>div:first-child {
                 position: absolute;
-                top: 0;
+                top: 50%;
                 left: 0;
                 right: 0;
 
@@ -47,6 +47,7 @@
                 }
 
                 span {
+                    display: block;
                     color: black;
                     font-size: $font-lg;
                     font-family: "Adobe Jenson Pro";
@@ -92,6 +93,7 @@
     }
 
     &>div:last-child {
+        height: 0;
         @include respond-to("sm") {
             opacity: 0;
             height: 25vh;

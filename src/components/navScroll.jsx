@@ -2,26 +2,25 @@ import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import { useAppContext } from "../context/store";
 
-const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
+const NavScroll = ({ topTitle, topLink, backTop = false, mobile }) => {
   const [scrollEnd, setScrollEnd] = useState(false);
   const context = useAppContext();
 
   const scrollToTop = () => {
+    // let duration = window.innerHeight / 3;
 
-    let duration = window.innerHeight / 3;
+    // if (duration > 3500) duration = 3500;
 
-    if (duration > 3500) duration = 3500;
-
-    window.scrollTo(0, 0, duration, {
-      easing: {
-        easeOutCubic: (t) => --t * t * t + 1
-      },
-    });
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: "smooth",
+    // window.scrollTo(0, 0, duration, {
+    //   easing: {
+    //     easeOutCubic: (t) => --t * t * t + 1,
+    //   },
     // });
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
     // console.log("hello")
     // document.body.scrollTop = document.documentElement.scrollTop = 0;
   };
@@ -46,7 +45,14 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
     }
   };
 
+  const handleResize = () => {
+    if (window.innerWidth <= 768) context.setMobile(mobile);
+  };
+
   useEffect(() => {
+    if (window.innerWidth <= 768) {
+      context.setMobile(mobile);
+    }
     document.addEventListener("scroll", detectScroll, false);
     return () => {
       document.removeEventListener("scroll", detectScroll, false);
@@ -55,21 +61,29 @@ const NavScroll = ({ topTitle, botTitle, topLink, backTop = false }) => {
 
   return (
     <section className="navScroll">
-      <div>
-        <Link to={`/${topLink}`} {...context.cursorHover.current}>{topTitle}</Link>
+      <div className="top">
+        <Link
+          to={`/${topLink}`}
+          onMouseEnter={() => context.cursorChangeHandler("hovered")}
+          onMouseLeave={() => context.cursorChangeHandler("")}
+        >
+          {topTitle}
+        </Link>
       </div>
       {backTop ? (
-        <div className={scrollEnd ? "scrollEnd" : null}>
+        <div className={scrollEnd ? "bottom scrollEnd" : "bottom"}>
           <div>Scroll</div>
           <div>
-            <button onClick={() => scrollToTop()} {...context.cursorHover.current}>Back to Top</button>
+            <button
+              onClick={() => scrollToTop()}
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              Back to Top
+            </button>
           </div>
         </div>
-      ) : (
-        <div>
-          <span>{botTitle}</span>
-        </div>
-      )}
+      ) : null}
     </section>
   );
 };

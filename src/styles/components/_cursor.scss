@@ -1,91 +1,55 @@
-body,
-#___gatsby {
-    background: #ffffff;
-}
-
-body.scrollDrag {
-
-    & a,
-    & section {
-        pointer-events: none !important;
-    }
-}
-
-img,
-a {
-    -webkit-user-select: none;
-    /* Safari 3.1+ */
-    -moz-user-select: none;
-    /* Firefox 2+ */
-    -ms-user-select: none;
-    /* IE 10+ */
-    user-select: none;
-    /* Standard syntax */
-    user-drag: none;
-    -webkit-user-drag: none;
-}
-
-#cursorwrapper {
+#custom_cursor {
     position: absolute;
-    top: 0px;
-    left: 0px;
     z-index: 10000;
-    pointer-events: none;
     mix-blend-mode: difference;
 
-    & #cursor {
+    .ring {
+        position: fixed;
+        width: 30px;
+        height: 30px;
+        border: 2px solid white;
+        border-radius: 100%;
+        transform: translate(-50%, -50%);
+        -webkit-transition-duration: 100ms;
+        transition-duration: 100ms;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+        will-change: width, height, transform, border;
+        z-index: 9;
+        pointer-events: none;
+    }
+
+    .cursor {
+        position: fixed;
         width: 16px;
         height: 16px;
-        position: fixed;
-        z-index: 10001;
+        z-index: 10;
         pointer-events: none;
-        transform: translate(-50%, -50%);
 
-        &>svg {
-            width: 100%;
+        svg {
             height: 100%;
+            width: 100%;
 
             path {
-                transition: fill 0.2s;
                 fill: white;
             }
         }
+    }
 
-        &.click {
-            &>svg {
-                path {
-                    fill: black;
-                }
+    .ring.hovered {
+        width: 40px;
+        height: 40px;
+    }
+
+    .ring.click {
+        background: white;
+    }
+
+    .cursor.click {
+        svg {
+            path {
+                fill: black;
             }
         }
-    }
-
-    & #cursor-trail {
-        transform: translate(-50%, -50%);
-        width: 30px;
-        height: 30px;
-        position: fixed;
-        z-index: 10000;
-        pointer-events: none;
-        border-radius: 20px;
-        border: solid 2px white;
-        transition: width 0.2s, height 0.2s, background 0.2s;
-
-        &.hover {
-            width: 40px;
-            height: 40px;
-        }
-
-        &.click {
-            background: white;
-        }
-    }
-}
-
-body.cursor-enabled {
-    cursor: none;
-
-    & * {
-        cursor: none !important;
     }
 }
