@@ -1,17 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
 
-const defaultState = {
-  cursorHoverOn: () => {},
-  cursorHoverOff: () => {},
-  cursorDefaultState: () => {},
-};
-
-const AppContext = createContext(defaultState);
+const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [mobile, setMobile] = useState(null);
-  const cursorSel = React.useRef(null);
-  const cursorTrailSel = React.useRef(null);
   const cursorHover = React.useRef(null);
   const [cursorType, setCursorType] = useState("");
 
@@ -21,15 +13,13 @@ export function AppWrapper({ children }) {
 
   const values = React.useMemo(
     () => ({
-      cursorSel,
-      cursorTrailSel,
       cursorHover,
       mobile,
       setMobile,
       cursorType,
       cursorChangeHandler
     }),
-    [mobile, cursorSel, cursorTrailSel, cursorHover, cursorType]
+    [mobile, cursorHover, cursorType]
   );
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
