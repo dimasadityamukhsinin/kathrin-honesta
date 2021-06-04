@@ -38,6 +38,7 @@
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.32.0",
     "react-scroll-wheel-handler": "^2.0.1",
-    "sass": "^1.32.13"
+    "sass": "^1.32.13",
+    "slickscrolljs": "^1.1.0"
   }
 }

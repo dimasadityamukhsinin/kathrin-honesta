@@ -14285,6 +14285,11 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
+slickscrolljs@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/slickscrolljs/-/slickscrolljs-1.1.0.tgz#4d799c2d244a09587012b0e3d15e29c7ea2f4535"
+  integrity sha512-fhJli6CMF37I3dL4pSM0r9saXrYnulVh5aOf0IEsMdZCL6nLY2EWh9AVyWPPY7eF0Pf9PRrcjrFGIcxEybvOTA==
+
 slugify@^1.4.4:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.5.3.tgz#36e009864f5476bfd5db681222643d92339c890d"

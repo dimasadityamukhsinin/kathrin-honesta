@@ -10,9 +10,9 @@ import { useAppContext } from "../context/store";
 const ProjectsPage = ({ data }) => {
   const contentRef = useRef();
   const context = useAppContext();
-  let heightMain, heightMain2, heightMain3, heightMain4;
+  let heightMain, heightMain2, heightMain3;
 
-  useEffect(() => {
+  const transitionProjects = () => {
     const main = document.getElementsByClassName("tes")[0].children;
     const height = main[1].clientHeight;
     const height2 = main[2].clientHeight;
@@ -45,289 +45,290 @@ const ProjectsPage = ({ data }) => {
     main[4].children[0].style.transform = `translateY(-${height3 / 2}px)`;
     main[4].children[0].style.opacity = 0;
 
-    // main[4].children[0].children[0].style.transform = `translateY(-${
-    //   (height4 * 2) / 2
-    // }px)`;
-    // main[4].children[0].children[1].style.transform = `translateY(-${Math.ceil(
-    //   height4 / 15
-    // )}px)`;
-    // main[4].children[0].children[0].style.opacity = 0;
-
     heightMain = main[1].getBoundingClientRect().height;
     heightMain2 = main[2].getBoundingClientRect().height;
     heightMain3 = main[3].getBoundingClientRect().height;
 
-    document.addEventListener(
-      "scroll",
-      () => {
-        const currentScroll = window.pageYOffset;
-        const windowHeight = window.innerHeight || window.screen.height;
-        let transform = 0;
+    const currentScroll = window.pageYOffset;
+    let transform = 0;
 
-        transform = Math.min(Math.abs(main[0].getBoundingClientRect().top), 25);
-        main[0].children[0].style.transform = `translateY(-${Math.min(
-          transform,
-          25
-        )}px)`;
+    transform = Math.min(Math.abs(main[0].getBoundingClientRect().top), 25);
+    main[0].children[0].style.transform = `translateY(-${Math.min(
+      transform,
+      25
+    )}px)`;
 
-        let opacity;
-        let opacity3;
-        if (
-          currentScroll <=
-          Math.ceil(main[0].getBoundingClientRect().height / 20)
-        ) {
-          opacity =
-            1 - currentScroll / (main[0].getBoundingClientRect().height / 25);
-          opacity3 =
-            currentScroll / (main[0].getBoundingClientRect().height / 10);
+    let opacity;
+    let opacity3;
+    if (
+      currentScroll <= Math.ceil(main[0].getBoundingClientRect().height / 20)
+    ) {
+      opacity =
+        1 - currentScroll / (main[0].getBoundingClientRect().height / 25);
+      opacity3 = currentScroll / (main[0].getBoundingClientRect().height / 10);
+    } else {
+      opacity = 0;
+    }
+    main[0].children[0].style.opacity = `${opacity}`;
+    main[1].children[0].children[0].style.opacity = `${opacity3}`;
+
+    if (transform === 25) {
+      //Opacity
+      let opacity2;
+      let opacity4;
+
+      if (
+        Math.abs(main[1].getBoundingClientRect().top - (heightMain - 25)) <=
+        Math.ceil(main[1].getBoundingClientRect().height / 2)
+      ) {
+        opacity2 =
+          1 -
+          Math.abs(main[1].getBoundingClientRect().top - (heightMain - 25)) /
+            (main[1].getBoundingClientRect().height / 2.5);
+        opacity4 = Math.min(
+          Math.abs(main[1].getBoundingClientRect().top - (heightMain - 25)) /
+            (main[1].getBoundingClientRect().height / 5),
+          1
+        );
+      } else {
+        opacity2 = 0;
+      }
+      if (opacity2 <= 0) {
+        main[1].children[0].children[0].style.opacity = 0;
+      } else {
+        main[1].children[0].children[0].style.opacity = `${opacity2}`;
+      }
+      main[1].children[0].children[1].style.opacity = `${opacity4}`;
+
+      //TranslateY
+      main[1].children[0].children[1].style.transform = `translateY(-${
+        Math.ceil(height / 25) +
+        Math.abs(main[1].getBoundingClientRect().top - (heightMain - 25))
+      }px)`;
+    }
+
+    if (main[1].children[0].children[1].getBoundingClientRect().top <= 0) {
+      //Opacity
+      let opacity6, opacity7, opacity8;
+
+      if (
+        Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25)) <=
+        Math.ceil(main[2].getBoundingClientRect().height / 2)
+      ) {
+        opacity6 =
+          1 -
+          Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25)) /
+            (main[2].getBoundingClientRect().height / 2.5);
+        opacity7 = Math.min(
+          Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25)) /
+            (main[2].getBoundingClientRect().height / 5),
+          1
+        );
+      } else {
+        opacity6 = 0;
+      }
+      if (opacity6 <= 0) {
+        main[2].children[0].children[0].style.opacity = 0;
+      } else {
+        main[2].children[0].children[0].style.opacity = `${opacity6}`;
+      }
+      opacity8 =
+        Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25)) /
+          (main[2].getBoundingClientRect().height / 5) -
+        1;
+      if (opacity8 <= 1) {
+        if (opacity8 <= 0) {
+          main[1].children[0].children[1].style.opacity = 0;
         } else {
-          opacity = 0;
+          main[1].children[0].children[1].style.opacity = `${opacity8}`;
         }
-        main[0].children[0].style.opacity = `${opacity}`;
-        main[1].children[0].children[0].style.opacity = `${opacity3}`;
+      }
+      main[2].children[0].children[1].style.opacity = `${opacity7}`;
 
-        if (transform === 25) {
-          //Opacity
-          let opacity2;
-          let opacity4;
+      //TranslateY
+      main[2].children[0].children[1].style.transform = `translateY(-${
+        Math.ceil(height2 / 25) +
+        Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25))
+      }px)`;
+    }
 
-          if (
-            Math.abs(main[1].getBoundingClientRect().top - (heightMain - 25)) <=
-            Math.ceil(main[1].getBoundingClientRect().height / 2)
-          ) {
-            opacity2 =
-              1 -
-              Math.abs(
-                main[1].getBoundingClientRect().top - (heightMain - 25)
-              ) /
-                (main[1].getBoundingClientRect().height / 2.5);
-            opacity4 = Math.min(
-              Math.abs(
-                main[1].getBoundingClientRect().top - (heightMain - 25)
-              ) /
-                (main[1].getBoundingClientRect().height / 5),
-              1
-            );
-          } else {
-            opacity2 = 0;
-          }
-          if (opacity2 <= 0) {
-            main[1].children[0].children[0].style.opacity = 0;
-          } else {
-            main[1].children[0].children[0].style.opacity = `${opacity2}`;
-          }
-          main[1].children[0].children[1].style.opacity = `${opacity4}`;
+    if (main[2].children[0].children[1].getBoundingClientRect().top <= 0) {
+      //Opacity
+      let opacity9, opacity10, opacity11;
 
-          //TranslateY
-          main[1].children[0].children[1].style.transform = `translateY(-${
-            Math.ceil(height / 25) +
-            Math.abs(main[1].getBoundingClientRect().top - (heightMain - 25))
+      if (
+        Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) <=
+        Math.ceil(main[3].getBoundingClientRect().height / 2)
+      ) {
+        opacity9 =
+          1 -
+          Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) /
+            (main[3].getBoundingClientRect().height / 2.5);
+        opacity10 = Math.min(
+          Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) /
+            (main[3].getBoundingClientRect().height / 5),
+          1
+        );
+      } else {
+        opacity9 = 0;
+      }
+      if (opacity9 <= 0) {
+        main[3].children[0].children[0].style.opacity = 0;
+      } else {
+        main[3].children[0].children[0].style.opacity = `${opacity9}`;
+      }
+      opacity11 =
+        Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) /
+          (main[3].getBoundingClientRect().height / 5) -
+        1;
+      if (opacity11 <= 1) {
+        if (opacity11 <= 0) {
+          main[2].children[0].children[1].style.opacity = 0;
+        } else {
+          main[2].children[0].children[1].style.opacity = `${opacity11}`;
+        }
+      }
+      main[3].children[0].children[1].style.opacity = `${opacity10}`;
+
+      // TranslateY
+      main[3].children[0].children[1].style.transform = `translateY(-${
+        Math.ceil(height3 / 25) +
+        Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25))
+      }px)`;
+    }
+
+    if (main[3].children[0].children[1].getBoundingClientRect().top <= 0) {
+      //Opacity
+      let opacity10;
+
+      opacity10 =
+        Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) /
+          (main[3].getBoundingClientRect().height / 5) -
+        3;
+      main[4].children[0].style.opacity = `${Math.min(opacity10, 1)}`;
+
+      if (1 - opacity10 <= 0) {
+        main[3].children[0].children[1].style.opacity = 0;
+      } else {
+        main[3].children[0].children[1].style.opacity = `${1 - opacity10}`;
+      }
+    }
+  };
+
+  useEffect(() => {
+    let mobile = false;
+    if (window.innerWidth <= 576) {
+      mobile = true;
+    } else {
+      mobile = false;
+    }
+
+    window.addEventListener(
+      "resize",
+      () => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        if (window.innerWidth <= 576) {
+          mobile = true;
+          const main = document.getElementsByClassName("tes")[0].children;
+
+          main[0].children[0].removeAttribute("style");
+          main[1].children[0].children[0].removeAttribute("style");
+          main[1].children[0].children[1].removeAttribute("style");
+          main[2].children[0].children[0].removeAttribute("style");
+          main[2].children[0].children[1].removeAttribute("style");
+          main[3].children[0].children[0].removeAttribute("style");
+          main[3].children[0].children[1].removeAttribute("style");
+          main[4].children[0].removeAttribute("style");
+
+          window.removeEventListener("scroll", transitionProjects, false);
+        } else {
+          mobile = false;
+          const main = document.getElementsByClassName("tes")[0].children;
+          const height = main[1].clientHeight;
+          const height2 = main[2].clientHeight;
+          const height3 = main[3].clientHeight;
+
+          main[1].children[0].children[0].style.transform = `translateY(-${
+            (height * 2) / 2
           }px)`;
-        }
+          main[1].children[0].children[1].style.transform = `translateY(-${Math.ceil(
+            height / 25
+          )}px)`;
+          main[1].children[0].children[0].style.opacity = 0;
 
-        if (main[1].children[0].children[1].getBoundingClientRect().top <= 0) {
-          //Opacity
-          let opacity6, opacity7, opacity8;
-
-          if (
-            Math.abs(
-              main[2].getBoundingClientRect().top - (heightMain2 - 25)
-            ) <= Math.ceil(main[2].getBoundingClientRect().height / 2)
-          ) {
-            opacity6 =
-              1 -
-              Math.abs(
-                main[2].getBoundingClientRect().top - (heightMain2 - 25)
-              ) /
-                (main[2].getBoundingClientRect().height / 2.5);
-            opacity7 = Math.min(
-              Math.abs(
-                main[2].getBoundingClientRect().top - (heightMain2 - 25)
-              ) /
-                (main[2].getBoundingClientRect().height / 5),
-              1
-            );
-          } else {
-            opacity6 = 0;
-          }
-          if (opacity6 <= 0) {
-            main[2].children[0].children[0].style.opacity = 0;
-          } else {
-            main[2].children[0].children[0].style.opacity = `${opacity6}`;
-          }
-          opacity8 =
-            Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25)) /
-              (main[2].getBoundingClientRect().height / 5) -
-            1;
-          if (opacity8 <= 1) {
-            if (opacity8 <= 0) {
-              main[1].children[0].children[1].style.opacity = 0;
-            } else {
-              main[1].children[0].children[1].style.opacity = `${opacity8}`;
-            }
-          }
-          main[2].children[0].children[1].style.opacity = `${opacity7}`;
-
-          //TranslateY
-          // main[2].children[0].children[1].style.transform = `translateY(-${
-          //   Math.ceil(height2 / 15) +
-          //   Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25))
-          // }px)`;
-          // main[2].children[0].children[1].style.transform = `translateY(${
-          //   Math.ceil(height2 / 15) -
-          //   Math.min(
-          //     Math.abs(
-          //       main[1].children[0].children[1].getBoundingClientRect().top
-          //     )
-          //   ) /
-          //     3
-          // }px)`;
-
-          main[2].children[0].children[1].style.transform = `translateY(-${
-            Math.ceil(height2 / 25) +
-            Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25))
+          main[2].children[0].children[0].style.transform = `translateY(-${
+            (height2 * 2) / 2
           }px)`;
-          // console.log(
-          //   Math.ceil(
-          //     height2 / 15
-          //   )
-          // );
-          // console.log(main[2].getBoundingClientRect().top)
-          // console.log(Math.abs(
-          //   main[2].getBoundingClientRect().top -
-          //     (heightMain2 - main[2].getBoundingClientRect().height / 2)
-          // ))
-          // console.log(heightMain2 - main[2].getBoundingClientRect().height / 2)
-          // console.log(heightMain2)
-          // console.log(main[2].getBoundingClientRect().height / 2)
-          // console.log(Math.ceil(main[2].getBoundingClientRect().height / 2))
-          // if (
-          //   Math.abs(
-          //     main[2].getBoundingClientRect().top - (heightMain2 - 25)
-          //   ) <= Math.ceil(main[2].getBoundingClientRect().height / 2)
+          main[2].children[0].children[1].style.transform = `translateY(-${Math.ceil(
+            height2 / 25
+          )}px)`;
+          main[2].children[0].children[0].style.opacity = 0;
 
-          //   // Math.abs(
-          //   //   main[2].getBoundingClientRect().top -
-          //   //     (heightMain2 - main[2].getBoundingClientRect().height / 2)
-          //   // ) <= Math.ceil(main[2].getBoundingClientRect().height / 2)
-          // ) {
-          //   opacity6 =
-          //     1 -
-          //     Math.abs(
-          //       main[2].getBoundingClientRect().top - (heightMain2 - 25)
-          //     ) /
-          //       (main[2].getBoundingClientRect().height / 2.5);
-          //   opacity7 = Math.min(
-          //     Math.abs(
-          //       main[2].getBoundingClientRect().top - (heightMain2 - 25)
-          //     ) /
-          //       (main[2].getBoundingClientRect().height / 5),
-          //     1
-          //   );
-          // } else {
-          //   opacity6 = 0;
-          // }
-          // opacity8 = Math.min(
-          //   Math.abs(
-          //     main[2].getBoundingClientRect().top -
-          //       (heightMain2 - main[2].getBoundingClientRect().height / 2)
-          //   ) /
-          //     (main[2].getBoundingClientRect().height / 1.2),
-          //   1
-          // );
-          // main[1].children[0].children[1].style.opacity = `${opacity6}`;
-          // main[2].children[0].children[0].style.opacity = `${opacity7}`;
-          // main[2].children[0].children[1].style.opacity = `${opacity8}`;
-
-          // //Height
-          // // main[2].children[0].children[1].style.transform = `translateY(-${
-          // //   Math.ceil(height2 / 15) +
-          // //   Math.abs(
-          // //     main[2].getBoundingClientRect().top -
-          // //       (heightMain2 - main[2].getBoundingClientRect().height / 1.2)
-          // //   )
-          // // }px)`;
-          // main[2].children[0].children[1].style.transform = `translateY(-${
-          //   Math.ceil(height2 / 15) +
-          //   Math.abs(main[2].getBoundingClientRect().top - (heightMain2 - 25))
-          // }px)`;
-        }
-
-        if (main[2].children[0].children[1].getBoundingClientRect().top <= 0) {
-          //Opacity
-          let opacity9, opacity10, opacity11;
-
-          // console.log(Math.abs(
-          //   main[3].getBoundingClientRect().top - (heightMain3 - 25)
-          // ))
-
-          // console.log(Math.ceil(main[3].getBoundingClientRect().height / 2))
-
-          if (
-            Math.abs(
-              main[3].getBoundingClientRect().top - (heightMain3 - 25)
-            ) <= Math.ceil(main[3].getBoundingClientRect().height / 2)
-          ) {
-            opacity9 =
-              1 -
-              Math.abs(
-                main[3].getBoundingClientRect().top - (heightMain3 - 25)
-              ) /
-                (main[3].getBoundingClientRect().height / 2.5);
-            opacity10 = Math.min(
-              Math.abs(
-                main[3].getBoundingClientRect().top - (heightMain3 - 25)
-              ) /
-                (main[3].getBoundingClientRect().height / 5),
-              1
-            );
-          } else {
-            opacity9 = 0;
-          }
-          if (opacity9 <= 0) {
-            main[3].children[0].children[0].style.opacity = 0;
-          } else {
-            main[3].children[0].children[0].style.opacity = `${opacity9}`;
-          }
-          opacity11 =
-            Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) /
-              (main[3].getBoundingClientRect().height / 5) -
-            1;
-          if (opacity11 <= 1) {
-            if (opacity11 <= 0) {
-              main[2].children[0].children[1].style.opacity = 0;
-            } else {
-              main[2].children[0].children[1].style.opacity = `${opacity11}`;
-            }
-          }
-          main[3].children[0].children[1].style.opacity = `${opacity10}`;
-
-          // TranslateY
-          main[3].children[0].children[1].style.transform = `translateY(-${
-            Math.ceil(height3 / 25) +
-            Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25))
+          main[3].children[0].children[0].style.transform = `translateY(-${
+            (height3 * 2) / 2
           }px)`;
-        }
+          main[3].children[0].children[1].style.transform = `translateY(-${Math.ceil(
+            height3 / 25
+          )}px)`;
+          main[3].children[0].children[0].style.opacity = 0;
 
-        if (main[3].children[0].children[1].getBoundingClientRect().top <= 0) {
-          //Opacity
-          let opacity9, opacity10, opacity11;
+          main[4].children[0].style.transform = `translateY(-${height3 / 2}px)`;
+          main[4].children[0].style.opacity = 0;
 
-          opacity10 =
-            Math.abs(main[3].getBoundingClientRect().top - (heightMain3 - 25)) /
-              (main[3].getBoundingClientRect().height / 5) -
-            3;
-          main[4].children[0].style.opacity = `${Math.min(opacity10, 1)}`;
-
-          if (1 - opacity10 <= 0) {
-            main[3].children[0].children[1].style.opacity = 0;
-          } else {
-            main[3].children[0].children[1].style.opacity = `${1 - opacity10}`;
-          }
+          window.addEventListener("scroll", transitionProjects, false);
         }
       },
       false
     );
+
+    if (mobile === false) {
+      window.addEventListener("scroll", transitionProjects, false);
+    } else {
+      const main = document.getElementsByClassName("tes")[0].children;
+
+      main[0].children[0].removeAttribute("style");
+      main[1].children[0].children[0].removeAttribute("style");
+      main[1].children[0].children[1].removeAttribute("style");
+      main[2].children[0].children[0].removeAttribute("style");
+      main[2].children[0].children[1].removeAttribute("style");
+      main[3].children[0].children[0].removeAttribute("style");
+      main[3].children[0].children[1].removeAttribute("style");
+      main[4].children[0].removeAttribute("style");
+
+      window.removeEventListener("scroll", transitionProjects, false);
+    }
+
+    const main = document.getElementsByClassName("tes")[0].children;
+    const height = main[1].clientHeight;
+    const height2 = main[2].clientHeight;
+    const height3 = main[3].clientHeight;
+
+    main[1].children[0].children[0].style.transform = `translateY(-${
+      (height * 2) / 2
+    }px)`;
+    main[1].children[0].children[1].style.transform = `translateY(-${Math.ceil(
+      height / 25
+    )}px)`;
+    main[1].children[0].children[0].style.opacity = 0;
+
+    main[2].children[0].children[0].style.transform = `translateY(-${
+      (height2 * 2) / 2
+    }px)`;
+    main[2].children[0].children[1].style.transform = `translateY(-${Math.ceil(
+      height2 / 25
+    )}px)`;
+    main[2].children[0].children[0].style.opacity = 0;
+
+    main[3].children[0].children[0].style.transform = `translateY(-${
+      (height3 * 2) / 2
+    }px)`;
+    main[3].children[0].children[1].style.transform = `translateY(-${Math.ceil(
+      height3 / 25
+    )}px)`;
+    main[3].children[0].children[0].style.opacity = 0;
+
+    main[4].children[0].style.transform = `translateY(-${height3 / 2}px)`;
+    main[4].children[0].style.opacity = 0;
   }, []);
 
   return (
@@ -352,7 +353,7 @@ const ProjectsPage = ({ data }) => {
             <div>
               <span>Jessica Watson</span>
             </div>
-            <div style={{ opacity: 0 }}>
+            <div>
               <StaticImage
                 src="../images/jessica watson_final.webp"
                 alt="Jessica Watson"
@@ -371,7 +372,7 @@ const ProjectsPage = ({ data }) => {
             <div>
               <span>suri-ram</span>
             </div>
-            <div style={{ opacity: 0 }}>
+            <div>
               <StaticImage
                 src="../images/Nursery_1.webp"
                 alt="Suri-Ram"
@@ -390,7 +391,7 @@ const ProjectsPage = ({ data }) => {
             <div>
               <span>Nautilus</span>
             </div>
-            <div style={{ opacity: 0 }}>
+            <div>
               <StaticImage
                 src="../images/nautilus.webp"
                 alt="Nautilus"
