@@ -1,4 +1,5 @@
 const checkCursor = () => {
+    console.log(window.innerWidth)
   if (window.innerWidth <= 576) {
     document.getElementById("custom_cursor").style.display = "none";
   } else {
