@@ -6,6 +6,7 @@ import NavScroll from "../components/navScroll";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { useAppContext } from "../context/store";
+import checkCursor from "../utils/checkCursor";
 
 const ProjectsPage = ({ data }) => {
   const contentRef = useRef();
@@ -329,7 +330,12 @@ const ProjectsPage = ({ data }) => {
 
     main[4].children[0].style.transform = `translateY(-${height3 / 2}px)`;
     main[4].children[0].style.opacity = 0;
+
+    checkCursor();
+
+    window.addEventListener("resize", checkCursor, false);
     return () => {
+      window.removeEventListener("resize", checkCursor, false);
       window.removeEventListener("scroll", transitionProjects, false);
     }
   }, []);

@@ -41,18 +41,6 @@ const MainLayout = ({ children, pageTitle }) => {
 
   useEffect(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-
-    window.addEventListener(
-      "resize",
-      () => {
-        if (window.innerWidth <= 576) {
-          document.getElementById("custom_cursor").style.display = "none";
-        } else {
-          document.getElementById("custom_cursor").removeAttribute("style");
-        }
-      },
-      false
-    );
   }, []);
 
   return (

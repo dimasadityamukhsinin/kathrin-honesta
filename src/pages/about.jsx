@@ -1,13 +1,23 @@
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import * as React from "react";
 import MainLayout from "../components/layout/mainLayout";
 import NavScroll from "../components/navScroll";
 import * as styles from "../styles/modules/about.module.scss";
 import { useAppContext } from "../context/store";
+import React, { useEffect } from "react";
+import checkCursor from "../utils/checkCursor";
 
 const AboutPage = () => {
   const context = useAppContext();
+
+  useEffect(() => {
+    checkCursor();
+
+    window.addEventListener("resize", checkCursor, false);
+    return () => {
+      window.removeEventListener("resize", checkCursor, false);
+    };
+  }, []);
 
   return (
     <MainLayout pageTitle="About">
