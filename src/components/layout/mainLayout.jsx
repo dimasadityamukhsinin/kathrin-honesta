@@ -45,17 +45,7 @@ const MainLayout = ({ children, pageTitle }) => {
 
   return (
     <>
-      <motion.main
-        initial={
-          context.mobile === "back"
-            ? "backMobile"
-            : context.mobile === "next"
-            ? "nextMobile"
-            : "desktop"
-        }
-        animate={context.mobile !== null ? "visibleMobile" : "visible"}
-        variants={variant}
-      >
+      <motion.main initial="desktop" animate="visible" variants={variant}>
         <Helmet>
           <title>{PageTitle}</title>
           <meta

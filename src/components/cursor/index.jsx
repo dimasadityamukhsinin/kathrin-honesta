@@ -5,7 +5,6 @@ const CustomCursor = () => {
   const context = useAppContext();
   const cursorRef = useRef();
   const ringRef = useRef();
-  // const [mousePosition, setMousePosition] = useState({ x: null, y: null });
 
   const mouseMoveHandler = (event) => {
     const { clientX, clientY } = event;
