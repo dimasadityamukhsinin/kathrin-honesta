@@ -34,6 +34,7 @@ const MainLayout = ({ children, pageTitle }) => {
       opacity: 1,
       x: 0,
       transition: {
+        delay: 0.5,
         duration: 0.8,
       },
     },
