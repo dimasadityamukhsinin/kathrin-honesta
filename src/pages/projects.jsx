@@ -1,5 +1,5 @@
 import { graphql } from "gatsby";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import MainLayout from "../components/layout/mainLayout";
 import * as styles from "../styles/modules/projects.module.scss";
 import NavScroll from "../components/navScroll";

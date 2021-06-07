@@ -45,10 +45,6 @@ const NavScroll = ({ topTitle, topLink, backTop = false, mobile }) => {
     }
   };
 
-  const handleResize = () => {
-    if (window.innerWidth <= 768) context.setMobile(mobile);
-  };
-
   useEffect(() => {
     if (window.innerWidth <= 768) {
       context.setMobile(mobile);
