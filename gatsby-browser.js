@@ -3,7 +3,6 @@ import "./src/styles/global.scss";
 
 import React from "react";
 import { AppWrapper } from "./src/context/store";
-import SmoothScroll from "./src/components/smooth";
 import { isWinPhone, isAndroid, isIOS } from "react-device-detect";
 
 export const wrapRootElement = ({ element }) => (
