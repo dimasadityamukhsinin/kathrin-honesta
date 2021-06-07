@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import useMousePosition from "./useMousePosition";
+import React, { useEffect, useRef } from "react";
 import { useAppContext } from "../../context/store";
 
 const CustomCursor = () => {
@@ -38,7 +37,6 @@ const CustomCursor = () => {
     };
   }, []);
 
-  const { x, y } = useMousePosition();
   return (
     <div id="custom_cursor">
       <div

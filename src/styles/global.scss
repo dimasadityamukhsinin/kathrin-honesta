@@ -10,9 +10,9 @@
     font-family: 'Acumin Pro';
     cursor: none;
 
-    // &::-webkit-scrollbar {
-    //     display: none;
-    // }
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 body,
