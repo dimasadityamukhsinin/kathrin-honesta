@@ -26,12 +26,6 @@
         }
 
         &>a {
-            img {
-                transition: transform .5s;
-                &:hover {
-                    transform: scale(1.01);
-                }
-            }
             body:global(.toggle) & {
                 border: 1px solid blue;
             }
