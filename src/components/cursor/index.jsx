@@ -30,7 +30,7 @@ const CustomCursor = () => {
     document.addEventListener("mouseup", mouseUpHandler);
     setTimeout(() => {
       document.querySelectorAll(".custom_cursor")[0].classList.add("active");
-    }, 250);
+    }, 500);
 
     return () => {
       document.removeEventListener("mousemove", mouseMoveHandler);
