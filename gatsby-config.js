@@ -27,6 +27,12 @@ module.exports = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve(`./src/gatsbylayout/index.jsx`)
+      }
     }
   ],
 };

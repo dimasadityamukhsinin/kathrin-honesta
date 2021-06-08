@@ -14,5 +14,5 @@ export const onClientEntry = () => {
   if (!isWinPhone && !isAndroid && !isIOS) {
     document.body.classList.add('onhover');
   }
-  // SmoothScroll(document, 80, 30);
+  SmoothScroll(document, 80, 20);
 };

@@ -17,15 +17,16 @@ function SmoothScroll(target, speed, smooth) {
   target.addEventListener("DOMMouseScroll", scrolled, { passive: false });
 
   function scrolled(e) {
+    // if currently not animating make sure our pos is up to date with the current scroll postion
+    if (!moving) {
+      pos = target.scrollTop;
+    }
     e.preventDefault(); // disable default scrolling
 
     var delta = normalizeWheelDelta(e);
 
-    pos += -delta * speed;
-    pos = Math.max(
-      0,
-      Math.min(pos, target.scrollHeight - frame.clientHeight)
-    ); // limit scrolling
+    pos += -delta * speed /2;
+    pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)); // limit scrolling
     if (!moving) update();
   }
 
@@ -40,13 +41,25 @@ function SmoothScroll(target, speed, smooth) {
 
   function update() {
     moving = true;
-
-    var delta = (pos - target.scrollTop) / smooth;
+    // scrollTop is an integer and moving it by anything less than a whole number wont do anything
+    // to prevent a noop and an infinite loop we need to round it
+    var delta = absRound((pos - target.scrollTop) / smooth);
 
     target.scrollTop += delta;
 
-    if (Math.abs(delta) > 0.5) requestFrame(update);
-    else moving = false;
+    if (Math.abs(delta) >= 1) {
+      requestFrame(update);
+    } else {
+      moving = false;
+    }
+  }
+
+  function absRound(num) {
+    if (num < 0) {
+      return -1 * Math.round(-1 * num);
+    } else {
+      return Math.round(num);
+    }
   }
 
   var requestFrame = (function () {

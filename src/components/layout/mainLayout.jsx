@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import Navigation from "../navigation";
 import { motion } from "framer-motion";
 import { useAppContext } from "../../context/store";
-import CustomCursor from "../cursor";
 
 const MainLayout = ({ children, pageTitle }) => {
   const PageTitle = pageTitle
@@ -46,7 +45,12 @@ const MainLayout = ({ children, pageTitle }) => {
 
   return (
     <>
-      <motion.main initial="desktop" animate="visible" variants={variant}>
+      <motion.main
+        initial="desktop"
+        animate="visible"
+        variants={variant}
+        id="container"
+      >
         <Helmet>
           <title>{PageTitle}</title>
           <meta
@@ -55,7 +59,6 @@ const MainLayout = ({ children, pageTitle }) => {
           />
         </Helmet>
         <Navigation />
-        <CustomCursor />
         {children}
       </motion.main>
     </>
