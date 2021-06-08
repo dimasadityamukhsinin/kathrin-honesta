@@ -28,6 +28,9 @@ const CustomCursor = () => {
     document.addEventListener("mousemove", mouseMoveHandler);
     document.addEventListener("mousedown", mouseDownHandler);
     document.addEventListener("mouseup", mouseUpHandler);
+    setTimeout(() => {
+      document.querySelectorAll(".custom_cursor")[0].classList.add("active");
+    }, 250);
 
     return () => {
       document.removeEventListener("mousemove", mouseMoveHandler);
@@ -37,9 +40,8 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <div id="custom_cursor">
+    <div className="custom_cursor">
       <div
-        // style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
         className={"cursor " + context.cursorType}
         ref={cursorRef}
       >

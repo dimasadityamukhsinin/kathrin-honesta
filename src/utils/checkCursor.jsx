@@ -1,9 +1,8 @@
 const checkCursor = () => {
-    console.log(window.innerWidth)
   if (window.innerWidth <= 768) {
-    document.getElementById("custom_cursor").style.display = "none";
+    document.getElementsByClassName("custom_cursor")[0].style.display = "none";
   } else {
-    document.getElementById("custom_cursor").removeAttribute("style");
+    document.getElementsByClassName("custom_cursor")[0].removeAttribute("style");
   }
 };
 

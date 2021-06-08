@@ -1,7 +1,9 @@
-#custom_cursor {
+.custom_cursor {
     position: absolute;
     z-index: 10000;
     mix-blend-mode: difference;
+    opacity: 0;
+    transition: opacity .5s;
 
     .ring {
         position: fixed;
@@ -52,4 +54,8 @@
             }
         }
     }
+}
+
+.active {
+    opacity: 1;
 }
