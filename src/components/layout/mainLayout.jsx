@@ -25,7 +25,7 @@ const MainLayout = ({ children, pageTitle }) => {
     visible: {
       opacity: 1,
       transition: {
-        delay: 0.3,
+        delay: 0.5,
         duration: 0.8,
       },
     },
