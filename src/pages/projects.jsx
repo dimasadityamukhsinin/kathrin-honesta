@@ -1,11 +1,13 @@
-import { graphql } from "gatsby";
+import { graphql, Link  } from "gatsby";
 import React, { useEffect } from "react";
-import MainLayout from "../components/layout/mainLayout";
-import * as styles from "../styles/modules/projects.module.scss";
-import NavScroll from "../components/navScroll";
-import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
+
+import * as styles from "../styles/modules/projects.module.scss";
+
+import MainLayout from "../components/layout/mainLayout";
+import NavScroll from "../components/navScroll";
 import { useAppContext } from "../context/store";
+
 import checkCursor from "../utils/checkCursor";
 import { addStyle, removeStyle } from "../utils/projectStyle";
 import { transitionProjects } from "../utils/transitionProjects";
@@ -57,6 +59,7 @@ const ProjectsPage = () => {
     checkCursor();
 
     window.addEventListener("resize", checkCursor, false);
+
 
     return () => {
       window.removeEventListener("resize", checkCursor, false);

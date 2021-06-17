@@ -16,7 +16,7 @@
         }
 
         body:global(.toggle) & {
-            border: 1px solid red;
+            border: 1px solid green;
         }
 
         @include respond-to("sm") {
@@ -29,7 +29,7 @@
             perspective: 2000px;
             
             body:global(.toggle) & {
-                border: 1px solid blue;
+                // border: 1px solid blue;
             }
 
             @include respond-to("sm") {

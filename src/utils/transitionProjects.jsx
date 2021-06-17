@@ -4,7 +4,9 @@ export const transitionProjects = () => {
   let transform = 0;
   let opacity, opacity1;
   const currentScroll = window.pageYOffset;
+  
   const main = document.getElementsByClassName("projectContent")[0].children;
+
   const height = main[0].clientHeight;
 
   transform = Math.min(Math.abs(main[0].getBoundingClientRect().top), 25);

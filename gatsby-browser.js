@@ -10,5 +10,5 @@ export const wrapRootElement = ({ element }) => (
 );
 
 export const onClientEntry = () => {
-  SmoothScroll(document, 80, 30);
+  // SmoothScroll(document, 41, 10);
 };
