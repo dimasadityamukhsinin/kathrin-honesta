@@ -15,9 +15,9 @@ export const transitionProjects = () => {
 
   addStyle();
 
-  if (currentScroll <= Math.ceil(main[0].getBoundingClientRect().height / 20)) {
-    opacity = 1 - currentScroll / (main[0].getBoundingClientRect().height / 25);
-    opacity1 = currentScroll / (main[0].getBoundingClientRect().height / 10);
+  if (currentScroll <= Math.ceil(height / 20)) {
+    opacity = 1 - currentScroll / (height / 25);
+    opacity1 = currentScroll / (height / 10);
   } else {
     opacity = 0;
   }
@@ -31,12 +31,12 @@ export const transitionProjects = () => {
 
     if (
       Math.abs(main[1].getBoundingClientRect().top - (height - 25)) <=
-      Math.ceil(main[1].getBoundingClientRect().height / 2)
+      Math.ceil(height / 2)
     ) {
       opacity2 =
         1 -
         Math.abs(main[1].getBoundingClientRect().top - (height - 25)) /
-          (main[1].getBoundingClientRect().height / 2.5);
+          (height / 2.5);
       opacity3 = Math.min(
         Math.abs(main[1].getBoundingClientRect().top - (height - 25)) /
           (main[1].getBoundingClientRect().height / 5),
@@ -51,12 +51,25 @@ export const transitionProjects = () => {
       main[1].children[0].children[0].style.opacity = `${opacity2}`;
     }
     main[1].children[0].children[1].style.opacity = `${opacity3}`;
+    // let test = (main[1].getBoundingClientRect().top - height / 2) / 8 - 1;
 
     //TranslateY
-    main[1].children[0].children[1].style.transform = `translateY(-${
+    main[1].children[0].children[1].style.transform = ` translateY(-${
       Math.ceil(height / 25) +
       Math.abs(main[1].getBoundingClientRect().top - (height - 25))
     }px)`;
+    // console.log(
+    //   1 -
+    //     Math.abs(main[1].getBoundingClientRect().top - (height - 25)) /
+    //       (main[1].getBoundingClientRect().height / 2.5)
+    // );
+    // console.log(Math.abs(main[1].getBoundingClientRect().top - height));
+    // console.log(height);
+    // console.log(Math.abs(main[1].getBoundingClientRect().top - (height)) /
+    // (main[1].getBoundingClientRect().height) * 25);
+    // console.log(Math.ceil(height / 25) +
+    // Math.abs(main[1].getBoundingClientRect().top - (height - 25)))
+    // console.log(height)
   }
 
   for (let i = 0; i < main.length; i++) {
@@ -67,15 +80,15 @@ export const transitionProjects = () => {
 
         if (
           Math.abs(main[i + 1].getBoundingClientRect().top - (height - 25)) <=
-          Math.ceil(main[i + 1].getBoundingClientRect().height / 2)
+          Math.ceil(height / 2)
         ) {
           opacity4 =
             1 -
             Math.abs(main[i + 1].getBoundingClientRect().top - (height - 25)) /
-              (main[i + 1].getBoundingClientRect().height / 2.5);
+              (height / 2.5);
           opacity5 = Math.min(
             Math.abs(main[i + 1].getBoundingClientRect().top - (height - 25)) /
-              (main[i + 1].getBoundingClientRect().height / 5),
+              (height / 5),
             1
           );
         } else {
@@ -88,7 +101,7 @@ export const transitionProjects = () => {
         }
         opacity6 =
           Math.abs(main[i + 1].getBoundingClientRect().top - (height - 25)) /
-            (main[i + 1].getBoundingClientRect().height / 5) -
+            (height / 5) -
           1;
         if (opacity6 <= 1) {
           if (opacity6 <= 0) {
@@ -114,7 +127,7 @@ export const transitionProjects = () => {
 
         opacity10 =
           Math.abs(main[i - 1].getBoundingClientRect().top - (height - 25)) /
-            (main[i - 1].getBoundingClientRect().height / 5) -
+            (height / 5) -
           3;
         main[i].children[0].style.opacity = `${Math.min(opacity10, 1)}`;
 

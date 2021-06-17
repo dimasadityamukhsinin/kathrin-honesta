@@ -9,6 +9,7 @@ import { useAppContext } from "../context/store";
 import checkCursor from "../utils/checkCursor";
 import { addStyle, removeStyle } from "../utils/projectStyle";
 import { transitionProjects } from "../utils/transitionProjects";
+import { useTransform, useViewportScroll, motion } from "framer-motion";
 
 const ProjectsPage = () => {
   const context = useAppContext();
@@ -64,22 +65,111 @@ const ProjectsPage = () => {
     };
   }, []);
 
+  // let firstTranslate = useTransform(scrollY, [0, 25], [0, -25]);
+  // let secondTranslate = useTransform(
+  //   scrollY,
+  //   [25, height],
+  //   [height / 8, -height]
+  // );
+  // let thirdTranslate = useTransform(
+  //   scrollY,
+  //   [height, height * 2],
+  //   [height / 8, -height]
+  // );
+
+  // let manyTranslate = useTransform(
+  //   scrollY,
+  //   [height * 2, height * 3],
+  //   [height / 8, -height]
+  // );
+
+  // let manyTranslate2 = useTransform(
+  //   scrollY,
+  //   [height * 3, height * 4],
+  //   [height / 8, -height]
+  // );
+
+  // let manyTranslate3 = useTransform(
+  //   scrollY,
+  //   [height * 4, height * 5],
+  //   [height / 8, -height]
+  // );
+
+  // let firstTextOpacity = useTransform(scrollY, [0, 25], [1, 0]);
+  // let secondTextOpacity = useTransform(
+  //   scrollY,
+  //   [0, height / 4, height / 3],
+  //   [0, 1, 0]
+  // );
+  // let thirdTextOpacity = useTransform(
+  //   scrollY,
+  //   [height / 2, height, height * 2 - height / 1.5],
+  //   [0, 1, 0]
+  // );
+
+  // let firstImageOpacity = useTransform(
+  //   scrollY,
+  //   [0, height / 2, height / 1.2],
+  //   [0, 1, 0]
+  // );
+  // let secondImageOpacity = useTransform(
+  //   scrollY,
+  //   [height, height * 2 - height / 2, (height * 2) / 1.2],
+  //   [0, 1, 0]
+  // );
+  // let thirdImageOpacity = useTransform(
+  //   scrollY,
+  //   [height * 2, height * 3 - height / 2, (height * 3) / 1.12],
+  //   [0, 1, 0]
+  // );
+  // let fourthImageOpacity = useTransform(
+  //   scrollY,
+  //   [height * 3, height * 4 - height / 2, (height * 4) / 1.12],
+  //   [0, 1, 0]
+  // );
+  // let fifthImageOpacity = useTransform(
+  //   scrollY,
+  //   [height * 4, height * 5 - (height * 4) / 2, (height * 5) / 1.12],
+  //   [0, 1, 0]
+  // );
+
+  // let firstRotate = useTransform(scrollY, [0, height], [-42, 42]);
+  // let secondRotate = useTransform(scrollY, [height, height * 2], [-42, 42]);
+
+  // let manyTextOpacity2 = useTransform(
+  //   scrollY,
+  //   [height * 2 - height / 2, height * 2, height * 3 - height / 1.5],
+  //   [0, 1, 0]
+  // );
+
+  // let manyTextOpacity3 = useTransform(
+  //   scrollY,
+  //   [height * 3 - height / 2, height * 3, height * 4 - height / 1.5],
+  //   [0, 1, 0]
+  // );
+
+  // let manyTextOpacity4 = useTransform(
+  //   scrollY,
+  //   [height * 4 - height / 2, height * 4, height * 5 - height / 1.5],
+  //   [0, 1, 0]
+  // );
+
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} mobile="next" />
       <section id={styles.projects} className="projectContent">
         <div>
-          <p>
+          <motion.p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          </motion.p>
         </div>
         <div>
           <Link to="/">
-            <div>
+            <motion.div>
               <span>Jessica Watson</span>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div>
               <StaticImage
                 src="../images/jessica watson_final.webp"
                 alt="Jessica Watson"
@@ -90,15 +180,15 @@ const ProjectsPage = () => {
                 onMouseEnter={() => context.cursorChangeHandler("hovered")}
                 onMouseLeave={() => context.cursorChangeHandler("")}
               />
-            </div>
+            </motion.div>
           </Link>
         </div>
         <div>
           <Link to="/">
-            <div>
+            <motion.div>
               <span>suri-ram</span>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div>
               <StaticImage
                 src="../images/Nursery_1.webp"
                 alt="Suri-Ram"
@@ -109,15 +199,15 @@ const ProjectsPage = () => {
                 onMouseEnter={() => context.cursorChangeHandler("hovered")}
                 onMouseLeave={() => context.cursorChangeHandler("")}
               />
-            </div>
+            </motion.div>
           </Link>
         </div>
         <div>
           <Link to="/">
-            <div>
+            <motion.div>
               <span>Nautilus</span>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div>
               <StaticImage
                 src="../images/nautilus.webp"
                 alt="Nautilus"
@@ -128,13 +218,50 @@ const ProjectsPage = () => {
                 onMouseEnter={() => context.cursorChangeHandler("hovered")}
                 onMouseLeave={() => context.cursorChangeHandler("")}
               />
-            </div>
+            </motion.div>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <motion.div>
+              <span>Nautilus</span>
+            </motion.div>
+            <motion.div>
+              <StaticImage
+                src="../images/nautilus.webp"
+                alt="Nautilus"
+                placeholder="blurred"
+                loading="eager"
+                objectFit="contain"
+                style={{ maxHeight: "100%" }}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              />
+            </motion.div>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <motion.div>
+              <span>tes</span>
+            </motion.div>
+            <motion.div>
+              <StaticImage
+                src="../images/nautilus.webp"
+                alt="Nautilus"
+                placeholder="blurred"
+                loading="eager"
+                objectFit="contain"
+                style={{ maxHeight: "100%" }}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              />
+            </motion.div>
           </Link>
         </div>
         <div>
           <p>©2020 Kathrin Honesta.</p>
         </div>
-        {/* <TextSection content="©2020 Kathrin Honesta." /> */}
       </section>
     </MainLayout>
   );

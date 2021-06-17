@@ -26,6 +26,8 @@
         }
 
         &>a {
+            perspective: 2000px;
+            
             body:global(.toggle) & {
                 border: 1px solid blue;
             }
@@ -62,6 +64,13 @@
                 height: calc(100vh - 130px);
                 display: flex;
                 align-items: center;
+
+                & > div {
+                    transition: transform .5s;
+                    &:hover {
+                        transform: scale(1.01);
+                    }
+                }
 
                 @include respond-to("sm") {
                     height: auto;
