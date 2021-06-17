@@ -51,25 +51,12 @@ export const transitionProjects = () => {
       main[1].children[0].children[0].style.opacity = `${opacity2}`;
     }
     main[1].children[0].children[1].style.opacity = `${opacity3}`;
-    // let test = (main[1].getBoundingClientRect().top - height / 2) / 8 - 1;
 
     //TranslateY
     main[1].children[0].children[1].style.transform = ` translateY(-${
       Math.ceil(height / 25) +
       Math.abs(main[1].getBoundingClientRect().top - (height - 25))
     }px)`;
-    // console.log(
-    //   1 -
-    //     Math.abs(main[1].getBoundingClientRect().top - (height - 25)) /
-    //       (main[1].getBoundingClientRect().height / 2.5)
-    // );
-    // console.log(Math.abs(main[1].getBoundingClientRect().top - height));
-    // console.log(height);
-    // console.log(Math.abs(main[1].getBoundingClientRect().top - (height)) /
-    // (main[1].getBoundingClientRect().height) * 25);
-    // console.log(Math.ceil(height / 25) +
-    // Math.abs(main[1].getBoundingClientRect().top - (height - 25)))
-    // console.log(height)
   }
 
   for (let i = 0; i < main.length; i++) {
