@@ -5,9 +5,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export const transition = ({ content, text, image, type }) => {
-  if (type === "projects") {
-    ScrollTrigger.matchMedia({
-      "(min-width: 768px)": () => {
+  ScrollTrigger.matchMedia({
+    "(min-width: 768px)": () => {
+      if (type === "projects") {
         if (content.current && text.current && image.current) {
           // Fade out text pertama
           gsap.fromTo(
@@ -73,25 +73,27 @@ export const transition = ({ content, text, image, type }) => {
                   opacity: 0,
                 });
             } else {
-              // fade text title
-              const tlText = gsap.timeline({
-                scrollTrigger: {
-                  trigger: content.current.children[id],
-                  start: "top 30%",
-                  end: "bottom 30%",
-                  scrub: true,
-                },
-              });
-              tlText
-                .from(text.current.children[id], {
-                  opacity: 0,
-                })
-                .to(text.current.children[id], {
-                  opacity: 1,
-                })
-                .to(text.current.children[id], {
-                  opacity: 0,
+              if (content.current.children[id] && text.current.children[id]) {
+                // fade text title
+                const tlText = gsap.timeline({
+                  scrollTrigger: {
+                    trigger: content.current.children[id],
+                    start: "top 30%",
+                    end: "bottom 30%",
+                    scrub: true,
+                  },
                 });
+                tlText
+                  .from(text.current.children[id], {
+                    opacity: 0,
+                  })
+                  .to(text.current.children[id], {
+                    opacity: 1,
+                  })
+                  .to(text.current.children[id], {
+                    opacity: 0,
+                  });
+              }
             }
 
             if (section) {
@@ -117,26 +119,7 @@ export const transition = ({ content, text, image, type }) => {
             }
           });
         }
-      },
-      // mobile
-      "(max-width: 767px)": () => {
-        ScrollTrigger.getAll().forEach((t) => {
-          t.kill();
-        });
-        content.current.children[0].children[0].removeAttribute("style");
-        for (let i = 0; i < text.current.children.length; i++) {
-          text.current.children[i].removeAttribute("style");
-        }
-        for (let i = 0; i < image.current.length; i++) {
-          if (image.current[i]) {
-            image.current[i].children[0].removeAttribute("style");
-          }
-        }
-      },
-    });
-  } else if (type === "all") {
-    ScrollTrigger.matchMedia({
-      "(min-width: 768px)": () => {
+      } else if (type === "all") {
         if (content.current) {
           // looping data
           gsap.utils.toArray(content.current).forEach((section, id) => {
@@ -156,33 +139,54 @@ export const transition = ({ content, text, image, type }) => {
                 }
               );
             } else {
-              // fade
-              const tl = gsap.timeline({
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 70%",
-                  end: "bottom 55%",
-                  scrub: true,
-                },
-              });
-              tl.from(section, {
-                opacity: 0,
-              })
-                .to(section, {
-                  opacity: 1,
-                })
-                .to(section, {
-                  opacity: 0,
+              if (section) {
+                // fade
+                const tl = gsap.timeline({
+                  scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "bottom 55%",
+                    scrub: true,
+                  },
                 });
+                tl.from(section, {
+                  opacity: 0,
+                })
+                  .to(section, {
+                    opacity: 1,
+                  })
+                  .to(section, {
+                    opacity: 0,
+                  });
+              }
             }
           });
         }
-      },
-      // mobile
-      "(max-width: 767px)": () =>
-        ScrollTrigger.getAll().forEach((t) => {
-          t.kill();
-        }),
-    });
-  }
+      }
+    },
+    // mobile
+    "(max-width: 767px)": () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        t.kill();
+      });
+
+      if (type === "projects") {
+        content.current.children[0].children[0].removeAttribute("style");
+        for (let i = 0; i < text.current.children.length; i++) {
+          text.current.children[i].removeAttribute("style");
+        }
+        for (let i = 0; i < image.current.length; i++) {
+          if (image.current[i]) {
+            image.current[i].children[0].removeAttribute("style");
+          }
+        }
+      } else if (type === "all") {
+        for (let i = 0; i < content.current.length; i++) {
+          if (content.current[i]) {
+            content.current[i].removeAttribute("style");
+          }
+        }
+      }
+    },
+  });
 };

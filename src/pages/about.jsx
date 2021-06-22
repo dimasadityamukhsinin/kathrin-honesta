@@ -1,12 +1,19 @@
 import { Link } from "gatsby";
+import React, { useEffect, useRef } from "react";
 import { StaticImage } from "gatsby-plugin-image";
+
+// Layout
 import MainLayout from "../components/layout/mainLayout";
 import NavScroll from "../components/navScroll";
+
+// Css
 import * as styles from "../styles/modules/about.module.scss";
+
+// Function
 import { useAppContext } from "../context/store";
-import React, { useEffect, useRef } from "react";
 import checkCursor from "../utils/checkCursor";
 import { transition } from "../utils/transition";
+import topResize from "../utils/topResize";
 
 const AboutPage = () => {
   const context = useAppContext();
@@ -22,8 +29,10 @@ const AboutPage = () => {
     // Check cursor
     checkCursor();
     window.addEventListener("resize", checkCursor, false);
+    window.addEventListener("resize", topResize, false);
     return () => {
       window.removeEventListener("resize", checkCursor, false);
+      window.removeEventListener("resize", topResize, false);
     };
   }, []);
 

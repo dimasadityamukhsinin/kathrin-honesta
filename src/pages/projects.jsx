@@ -1,44 +1,26 @@
 import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
+import exampleData from "../../exampleData.json";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
+import NavScroll from "../components/navScroll";
 
 // Css
 import * as styles from "../styles/modules/projects.module.scss";
-import { transition } from "../utils/transition";
 
 // Function
 import { useAppContext } from "../context/store";
 import checkCursor from "../utils/checkCursor";
-import NavScroll from "../components/navScroll";
+import topResize from "../utils/topResize";
+import { transition } from "../utils/transition";
 
 const ProjectsPage = () => {
   const context = useAppContext();
   const textRef = React.useRef();
   const contentRef = React.useRef();
   const imageRef = React.useRef(new Array());
-
-  // Data Example
-  const exampleData = [
-    {
-      title: "Jessica Watson",
-      image: "../images/jessica watson_final.webp",
-    },
-    {
-      title: "suri-ram",
-      image: "../images/Nursery_1.webp",
-    },
-    {
-      title: "Nautilus",
-      image: "../images/nautilus.webp",
-    },
-  ];
-
-  const topResize = () => {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-  }
 
   React.useEffect(() => {
     // Fungsi transisi

@@ -58,6 +58,10 @@
   }
 
   &>section {
+    @include respond-to("lg") {
+      padding: 60px;
+    }
+
     @include respond-to("md") {
       padding: 20px;
       text-align: left !important;
