@@ -36,6 +36,10 @@ const ProjectsPage = () => {
     },
   ];
 
+  const topResize = () => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+
   React.useEffect(() => {
     // Fungsi transisi
     transition({
@@ -47,9 +51,11 @@ const ProjectsPage = () => {
 
     // Check cursor
     checkCursor();
+    window.addEventListener("resize", topResize, false);
     window.addEventListener("resize", checkCursor, false);
     return () => {
       window.removeEventListener("resize", checkCursor, false);
+      window.removeEventListener("resize", topResize, false);
     };
   }, []);
 

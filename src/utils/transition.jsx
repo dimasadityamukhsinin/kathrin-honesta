@@ -76,7 +76,7 @@ export const transition = ({ content, text, image, type }) => {
               // fade text title
               const tlText = gsap.timeline({
                 scrollTrigger: {
-                  trigger: section,
+                  trigger: content.current.children[id],
                   start: "top 30%",
                   end: "bottom 30%",
                   scrub: true,
@@ -93,33 +93,46 @@ export const transition = ({ content, text, image, type }) => {
                   opacity: 0,
                 });
             }
-            // fade image
-            const tlImage = gsap.timeline({
-              scrollTrigger: {
-                trigger: section,
-                start: "top 70%",
-                end: "bottom 55%",
-                scrub: true,
-              },
-            });
-            tlImage
-              .from(section.children[0], {
-                opacity: 0,
-              })
-              .to(section.children[0], {
-                opacity: 1,
-              })
-              .to(section.children[0], {
-                opacity: 0,
+
+            if (section) {
+              // fade image
+              const tlImage = gsap.timeline({
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 70%",
+                  end: "bottom 55%",
+                  scrub: true,
+                },
               });
+              tlImage
+                .from(section.children[0], {
+                  opacity: 0,
+                })
+                .to(section.children[0], {
+                  opacity: 1,
+                })
+                .to(section.children[0], {
+                  opacity: 0,
+                });
+            }
           });
         }
       },
       // mobile
-      "(max-width: 767px)": () =>
+      "(max-width: 767px)": () => {
         ScrollTrigger.getAll().forEach((t) => {
           t.kill();
-        }),
+        });
+        content.current.children[0].children[0].removeAttribute("style");
+        for (let i = 0; i < text.current.children.length; i++) {
+          text.current.children[i].removeAttribute("style");
+        }
+        for (let i = 0; i < image.current.length; i++) {
+          if (image.current[i]) {
+            image.current[i].children[0].removeAttribute("style");
+          }
+        }
+      },
     });
   } else if (type === "all") {
     ScrollTrigger.matchMedia({
