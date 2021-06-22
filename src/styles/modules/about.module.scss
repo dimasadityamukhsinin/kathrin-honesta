@@ -62,9 +62,6 @@
 
             @include respond-to("xl") {
                 max-width: none;
-            }
-
-            @include respond-to("sm") {
                 font-size: $font-md;
             }
         }

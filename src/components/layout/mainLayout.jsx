@@ -1,54 +1,62 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import Navigation from "../navigation";
 import { motion } from "framer-motion";
+
+import Navigation from "../navigation";
+import CustomCursor from "../cursor";
 import { useAppContext } from "../../context/store";
 
-const MainLayout = ({ children, pageTitle }) => {
+const MainLayout = ({ pageTitle, children }) => {
   const PageTitle = pageTitle
     ? `${pageTitle} ⟡ Kathrin Honesta Portfolio Website`
     : "Kathrin Honesta Portfolio Website";
-  const context = useAppContext();
+    const context = useAppContext();
 
+  const duration = 0.35;
   const variant = {
-    nextMobile: {
-      opacity: 0,
-      x: "-100%",
-    },
-    backMobile: {
-      opacity: 0,
-      x: "100%",
-    },
-    desktop: {
+    initial: {
       opacity: 0,
     },
-    visible: {
+    enter: {
       opacity: 1,
       transition: {
-        delay: 0.5,
-        duration: 0.8,
+        duration: duration,
+        delay: duration,
       },
     },
-    visibleMobile: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: 0.5,
-        duration: 0.8,
-      },
+    exit: {
+      opacity: 0,
+      transition: { duration: duration },
     },
   };
 
+  const checkMobile = () => {
+    if (window.innerWidth <= 576) {
+      context.setMobile(true);
+    } else {
+      context.setMobile(false);
+    }
+  };
+
   useEffect(() => {
+    checkMobile();
+
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    window.addEventListener("resize", checkMobile, false);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile, false);
+    };
   }, []);
 
   return (
     <>
+      <CustomCursor />
       <motion.main
-        initial="desktop"
-        animate="visible"
         variants={variant}
+        initial="initial"
+        animate="enter"
+        exit="exit"
         id="container"
       >
         <Helmet>

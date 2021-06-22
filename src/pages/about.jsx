@@ -4,15 +4,23 @@ import MainLayout from "../components/layout/mainLayout";
 import NavScroll from "../components/navScroll";
 import * as styles from "../styles/modules/about.module.scss";
 import { useAppContext } from "../context/store";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import checkCursor from "../utils/checkCursor";
+import { transition } from "../utils/transition";
 
 const AboutPage = () => {
   const context = useAppContext();
+  const contentRef = useRef(new Array());
 
   useEffect(() => {
-    checkCursor();
+    // Fungsi transisi
+    transition({
+      content: contentRef,
+      type: "all",
+    });
 
+    // Check cursor
+    checkCursor();
     window.addEventListener("resize", checkCursor, false);
     return () => {
       window.removeEventListener("resize", checkCursor, false);
@@ -21,10 +29,10 @@ const AboutPage = () => {
 
   return (
     <MainLayout pageTitle="About">
-      <NavScroll topTitle="Close" topLink="projects" mobile="back" />
-      <section id={styles.about} data-scroll-container>
+      <NavScroll topTitle="Close" topLink="projects" />
+      <section id={styles.about}>
         <div />
-        <div>
+        <div ref={(el) => contentRef.current.push(el)}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Kathrin
@@ -33,7 +41,7 @@ const AboutPage = () => {
         </div>
         <div>
           <span>Selected Clients</span>
-          <div className={styles.clients}>
+          <div className={styles.clients} ref={(el) => contentRef.current.push(el)}>
             <StaticImage
               src="../images/jessica watson_final.webp"
               alt="Jessica Watson"

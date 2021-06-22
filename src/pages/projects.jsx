@@ -1,203 +1,132 @@
-import { graphql, Link  } from "gatsby";
-import React, { useEffect } from "react";
+import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 
-import * as styles from "../styles/modules/projects.module.scss";
-
+// Layout
 import MainLayout from "../components/layout/mainLayout";
-import NavScroll from "../components/navScroll";
-import { useAppContext } from "../context/store";
 
+// Css
+import * as styles from "../styles/modules/test.module.scss";
+import { transition } from "../utils/transition";
+
+// Function
+import { useAppContext } from "../context/store";
 import checkCursor from "../utils/checkCursor";
-import { addStyle, removeStyle } from "../utils/projectStyle";
-import { transitionProjects } from "../utils/transitionProjects";
+import NavScroll from "../components/navScroll";
 
 const ProjectsPage = () => {
   const context = useAppContext();
+  const textRef = React.useRef();
+  const contentRef = React.useRef();
+  const imageRef = React.useRef(new Array());
 
-  useEffect(() => {
-    let mobile = false;
-    if (window.innerWidth <= 576) {
-      mobile = true;
-    } else {
-      mobile = false;
-    }
+  // Data Example
+  const exampleData = [
+    {
+      title: "Jessica Watson",
+      image: "../images/jessica watson_final.webp",
+    },
+    {
+      title: "suri-ram",
+      image: "../images/Nursery_1.webp",
+    },
+    {
+      title: "Nautilus",
+      image: "../images/nautilus.webp",
+    },
+  ];
 
-    window.addEventListener(
-      "resize",
-      () => {
-        if (document.getElementsByClassName("projectContent")[0]) {
-          document.body.scrollTop = document.documentElement.scrollTop = 0;
-          if (window.innerWidth <= 576) {
-            mobile = true;
+  React.useEffect(() => {
+    // Fungsi transisi
+    transition({
+      content: contentRef,
+      text: textRef,
+      image: imageRef,
+      type: "projects"
+    });
 
-            removeStyle();
-
-            window.removeEventListener("scroll", transitionProjects, false);
-          } else {
-            mobile = false;
-
-            addStyle();
-
-            window.addEventListener("scroll", transitionProjects, false);
-          }
-        }
-      },
-      false
-    );
-
-    if (mobile === false) {
-      addStyle();
-
-      window.addEventListener("scroll", transitionProjects, false);
-    } else {
-      removeStyle();
-
-      window.removeEventListener("scroll", transitionProjects, false);
-    }
-
+    // Check cursor
     checkCursor();
-
     window.addEventListener("resize", checkCursor, false);
-
-
     return () => {
       window.removeEventListener("resize", checkCursor, false);
-      window.removeEventListener("scroll", transitionProjects, false);
     };
   }, []);
 
   return (
     <MainLayout pageTitle="Projects">
-      <NavScroll topTitle="Info" topLink="about" backTop={true} mobile="next" />
-      <section id={styles.projects} className="projectContent">
-        <div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-        <div>
+      <NavScroll topTitle="Info" topLink="about" backTop={true} />
+      <div id={styles.test} ref={contentRef}>
+        <section className={styles.nChange}>
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </section>
+        <section ref={(el) => imageRef.current.push(el)}>
           <Link to="/">
-            <div>
-              <span>Jessica Watson</span>
-            </div>
-            <div>
-              <StaticImage
-                src="../images/jessica watson_final.webp"
-                alt="Jessica Watson"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="contain"
-                style={{ maxHeight: "100%" }}
-                onMouseEnter={() => context.cursorChangeHandler("hovered")}
-                onMouseLeave={() => context.cursorChangeHandler("")}
-              />
-            </div>
+            <StaticImage
+              src="../images/jessica watson_final.webp"
+              alt="Jessica Watson"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="contain"
+              style={{ maxHeight: "100%" }}
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            />
+            <span>Jessica Watson</span>
           </Link>
-        </div>
-        <div>
+        </section>
+        <section ref={(el) => imageRef.current.push(el)}>
           <Link to="/">
-            <div>
-              <span>suri-ram</span>
-            </div>
-            <div>
-              <StaticImage
-                src="../images/Nursery_1.webp"
-                alt="Suri-Ram"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="contain"
-                style={{ maxHeight: "100%" }}
-                onMouseEnter={() => context.cursorChangeHandler("hovered")}
-                onMouseLeave={() => context.cursorChangeHandler("")}
-              />
-            </div>
+            <StaticImage
+              src="../images/Nursery_1.webp"
+              alt="Suri-Ram"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="contain"
+              style={{ maxHeight: "100%" }}
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            />
+            <span>Suri-Ram</span>
           </Link>
-        </div>
-        <div>
+        </section>
+        <section ref={(el) => imageRef.current.push(el)}>
           <Link to="/">
-            <div>
-              <span>Nautilus</span>
-            </div>
-            <div>
-              <StaticImage
-                src="../images/nautilus.webp"
-                alt="Nautilus"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="contain"
-                style={{ maxHeight: "100%" }}
-                onMouseEnter={() => context.cursorChangeHandler("hovered")}
-                onMouseLeave={() => context.cursorChangeHandler("")}
-              />
-            </div>
+            <StaticImage
+              src="../images/nautilus.webp"
+              alt="Nautilus"
+              placeholder="blurred"
+              loading="eager"
+              objectFit="contain"
+              style={{ maxHeight: "100%" }}
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            />
+            <span>Nautilus</span>
           </Link>
+        </section>
+        <section className={styles.nChange}>
+          <div>
+            <p>©2020 Kathrin Honesta.</p>
+          </div>
+        </section>
+        <div className={styles.fixed}>
+          <div ref={textRef}>
+            {exampleData.map((data, id) => (
+              <span key={id} className="test">
+                {data.title}
+              </span>
+            ))}
+          </div>
         </div>
-        <div>
-          <Link to="/">
-            <div>
-              <span>Nautilus</span>
-            </div>
-            <div>
-              <StaticImage
-                src="../images/nautilus.webp"
-                alt="Nautilus"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="contain"
-                style={{ maxHeight: "100%" }}
-                onMouseEnter={() => context.cursorChangeHandler("hovered")}
-                onMouseLeave={() => context.cursorChangeHandler("")}
-              />
-            </div>
-          </Link>
-        </div>
-        <div>
-          <Link to="/">
-            <div>
-              <span>tes</span>
-            </div>
-            <div>
-              <StaticImage
-                src="../images/nautilus.webp"
-                alt="Nautilus"
-                placeholder="blurred"
-                loading="eager"
-                objectFit="contain"
-                style={{ maxHeight: "100%" }}
-                onMouseEnter={() => context.cursorChangeHandler("hovered")}
-                onMouseLeave={() => context.cursorChangeHandler("")}
-              />
-            </div>
-          </Link>
-        </div>
-        <div>
-          <p>©2020 Kathrin Honesta.</p>
-        </div>
-      </section>
+      </div>
     </MainLayout>
   );
 };
-
-export const query = graphql`
-  query {
-    jessica: file(relativePath: { eq: "jessica watson_final.webp" }) {
-      childImageSharp {
-        gatsbyImageData(formats: [WEBP], placeholder: BLURRED)
-      }
-    }
-    nautilus: file(relativePath: { eq: "nautilus.webp" }) {
-      childImageSharp {
-        gatsbyImageData(formats: [WEBP], placeholder: BLURRED)
-      }
-    }
-    nursery: file(relativePath: { eq: "Nursery_1.webp" }) {
-      childImageSharp {
-        gatsbyImageData(formats: [WEBP], placeholder: BLURRED)
-      }
-    }
-  }
-`;
 
 export default ProjectsPage;

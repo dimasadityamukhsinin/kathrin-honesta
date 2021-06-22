@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
+
 import { useAppContext } from "../context/store";
 
-const NavScroll = ({ topTitle, topLink, backTop = false, mobile }) => {
+const NavScroll = ({ topTitle, topLink, backTop = false }) => {
   const [scrollEnd, setScrollEnd] = useState(false);
   const context = useAppContext();
 
+  // Scroll to Top
   const scrollToTop = () => {
-    // let duration = window.innerHeight / 3;
-
-    // if (duration > 3500) duration = 3500;
-
-    // window.scrollTo(0, 0, duration, {
-    //   easing: {
-    //     easeOutCubic: (t) => --t * t * t + 1,
-    //   },
-    // });
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
-    // console.log("hello")
-    // document.body.scrollTop = document.documentElement.scrollTop = 0;
   };
 
+  // Window Height
   const windowHeight = () =>
     window.innerHeight ||
     document.documentElement.clientHeight ||
     document.getElementsByTagName("body")[0].clientHeight;
 
+  // Detect Scroll
   const detectScroll = () => {
     const currentScroll = window.scrollY;
     const totalHeight = document.body.clientHeight;
@@ -46,12 +39,9 @@ const NavScroll = ({ topTitle, topLink, backTop = false, mobile }) => {
   };
 
   useEffect(() => {
-    if (window.innerWidth <= 768) {
-      context.setMobile(mobile);
-    }
-    document.addEventListener("scroll", detectScroll, false);
+    window.addEventListener("scroll", detectScroll, false);
     return () => {
-      document.removeEventListener("scroll", detectScroll, false);
+      window.removeEventListener("scroll", detectScroll, false);
     };
   }, []);
 
