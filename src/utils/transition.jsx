@@ -53,7 +53,6 @@ export const transition = ({ content, text, image, type }) => {
 
           // looping data
           gsap.utils.toArray(image.current).forEach((section, id) => {
-            console.log(section)
             if (id === 0) {
               // fade text title pertama
               const tl = gsap.timeline({

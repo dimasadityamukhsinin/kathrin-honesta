@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+
 import { useAppContext } from "../../context/store";
 
 const CustomCursor = () => {

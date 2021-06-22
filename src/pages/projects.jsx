@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import MainLayout from "../components/layout/mainLayout";
 
 // Css
-import * as styles from "../styles/modules/test.module.scss";
+import * as styles from "../styles/modules/projects.module.scss";
 import { transition } from "../utils/transition";
 
 // Function
