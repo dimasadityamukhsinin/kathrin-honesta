@@ -15,7 +15,6 @@ import * as styles from "../styles/modules/projects.module.scss";
 
 // Function
 import { useAppContext } from "../context/store";
-import topResize from "../utils/topResize";
 import { transition } from "../utils/transition";
 
 // Register Plugin ScrollTrigger
@@ -36,13 +35,6 @@ const ProjectsPage = () => {
       type: "projects"
     });
 
-    window.addEventListener("resize", topResize, false);
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        t.kill();
-      });
-      window.removeEventListener("resize", topResize, false);
-    };
   }, []);
 
   return (

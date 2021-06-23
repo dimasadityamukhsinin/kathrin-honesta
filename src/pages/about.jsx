@@ -11,9 +11,7 @@ import * as styles from "../styles/modules/about.module.scss";
 
 // Function
 import { useAppContext } from "../context/store";
-import checkCursor from "../utils/checkCursor";
 import { transition } from "../utils/transition";
-import topResize from "../utils/topResize";
 
 const AboutPage = () => {
   const context = useAppContext();
@@ -25,11 +23,6 @@ const AboutPage = () => {
       content: contentRef,
       type: "all",
     });
-
-    window.addEventListener("resize", checkCursor, false);
-    return () => {
-      window.removeEventListener("resize", checkCursor, false);
-    };
   }, []);
 
   return (
