@@ -1,0 +1,106 @@
+@import '../components/variables';
+
+#projectsDetail {
+    padding-bottom: 100px;
+
+    &>section:first-child {
+        height: 100vh;
+        width: 100%;
+
+        @include respond-to("md") {
+            height: auto;
+            padding-top: 50px;
+        }
+
+        p {
+            @include respond-to("md") {
+                font-size: $font-sm;
+            }
+        }
+    }
+
+    &>section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        @include respond-to("lg") {
+            padding: 40px;
+        }
+
+        @include respond-to("md") {
+            text-align: left;
+            padding: 10px 20px;
+        }
+
+        body:global(.toggle) & {
+            border: solid thin green;
+        }
+
+        p {
+            font-size: $font-lg;
+            font-family: "Adobe Jenson Pro";
+            max-width: 1075px;
+
+            body:global(.toggle) & {
+                border: solid thin red;
+            }
+
+            @include respond-to("md") {
+                font-size: $font-md;
+            }
+        }
+    }
+
+    .content {
+
+        p:first-child {
+            font-size: $font-md;
+            margin-bottom: 20px;
+            @include respond-to("md") {
+                font-size: $font-xs;
+                margin-bottom: 10px;
+            }
+        }
+
+        p:nth-child(2) {
+            font-size: $font-sm;
+            @include respond-to("md") {
+                font-size: $font-xxs;
+            }
+        }
+
+        p:nth-child(3) {
+            font-size: $font-xs;
+        }
+
+        p:not(:first-child) {
+            margin: 40px 0px;
+            @include respond-to("md") {
+                margin: 10px 0px;
+            }
+        }
+
+        p:last-child {
+            font-size: $font-xs;
+            margin-top: 20px;
+        }
+
+        &>div {
+            max-width: 1075px;
+            margin: 30px 0px;
+            height: 80vh;
+
+            @include respond-to("md") {
+                height: auto;
+                margin: 20px 0px;
+            }
+
+            body:global(.toggle) & {
+                border: solid thin red;
+            }
+        }
+    }
+}

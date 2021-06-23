@@ -3,7 +3,13 @@ import { Link } from "gatsby";
 
 import { useAppContext } from "../context/store";
 
-const NavScroll = ({ topTitle, topLink, backTop = false }) => {
+const NavScroll = ({
+  topTitle,
+  topLink,
+  backTop = false,
+  prev = null,
+  next = null,
+}) => {
   const [scrollEnd, setScrollEnd] = useState(false);
   const context = useAppContext();
 
@@ -59,7 +65,18 @@ const NavScroll = ({ topTitle, topLink, backTop = false }) => {
       {backTop ? (
         <div className={scrollEnd ? "bottom scrollEnd" : "bottom"}>
           <div>Scroll</div>
-          <div>
+          <div className={prev || next ? "detail" : null}>
+            {prev ? (
+              <Link
+                to={`/projects/${prev}`}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              >
+                Previous Project
+              </Link>
+            ) : (
+              <div />
+            )}
             <button
               onClick={() => scrollToTop()}
               onMouseEnter={() => context.cursorChangeHandler("hovered")}
@@ -67,6 +84,17 @@ const NavScroll = ({ topTitle, topLink, backTop = false }) => {
             >
               Back to Top
             </button>
+            {next ? (
+              <Link
+                to={`/projects/${next}`}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              >
+                Next Project
+              </Link>
+            ) : (
+              <div />
+            )}
           </div>
         </div>
       ) : null}

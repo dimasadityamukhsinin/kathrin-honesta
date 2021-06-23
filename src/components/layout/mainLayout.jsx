@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Navigation from "../navigation";
 import CustomCursor from "../cursor";
 import { useAppContext } from "../../context/store";
+import checkCursor from "../../utils/checkCursor";
 
 const MainLayout = ({ pageTitle, children }) => {
   const PageTitle = pageTitle
@@ -40,12 +41,15 @@ const MainLayout = ({ pageTitle, children }) => {
 
   useEffect(() => {
     checkMobile();
+    checkCursor();
 
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     window.addEventListener("resize", checkMobile, false);
+    window.addEventListener("resize", checkCursor, false);
 
     return () => {
       window.removeEventListener("resize", checkMobile, false);
+      window.removeEventListener("resize", checkCursor, false);
     };
   }, []);
 

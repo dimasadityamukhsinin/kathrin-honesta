@@ -26,13 +26,9 @@ const AboutPage = () => {
       type: "all",
     });
 
-    // Check cursor
-    checkCursor();
     window.addEventListener("resize", checkCursor, false);
-    window.addEventListener("resize", topResize, false);
     return () => {
       window.removeEventListener("resize", checkCursor, false);
-      window.removeEventListener("resize", topResize, false);
     };
   }, []);
 

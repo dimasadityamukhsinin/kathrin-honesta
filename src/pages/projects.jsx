@@ -1,6 +1,9 @@
 import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import exampleData from "../../exampleData.json";
 
 // Layout
@@ -12,9 +15,11 @@ import * as styles from "../styles/modules/projects.module.scss";
 
 // Function
 import { useAppContext } from "../context/store";
-import checkCursor from "../utils/checkCursor";
 import topResize from "../utils/topResize";
 import { transition } from "../utils/transition";
+
+// Register Plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsPage = () => {
   const context = useAppContext();
@@ -31,12 +36,11 @@ const ProjectsPage = () => {
       type: "projects"
     });
 
-    // Check cursor
-    checkCursor();
     window.addEventListener("resize", topResize, false);
-    window.addEventListener("resize", checkCursor, false);
     return () => {
-      window.removeEventListener("resize", checkCursor, false);
+      ScrollTrigger.getAll().forEach((t) => {
+        t.kill();
+      });
       window.removeEventListener("resize", topResize, false);
     };
   }, []);
@@ -44,7 +48,7 @@ const ProjectsPage = () => {
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} />
-      <div id={styles.test} ref={contentRef}>
+      <div id={styles.projects} ref={contentRef}>
         <section className={styles.nChange}>
           <div>
             <p>
@@ -54,7 +58,7 @@ const ProjectsPage = () => {
           </div>
         </section>
         <section ref={(el) => imageRef.current.push(el)}>
-          <Link to="/">
+          <Link to="/projects/jessica-watson">
             <StaticImage
               src="../images/jessica watson_final.webp"
               alt="Jessica Watson"
@@ -69,7 +73,7 @@ const ProjectsPage = () => {
           </Link>
         </section>
         <section ref={(el) => imageRef.current.push(el)}>
-          <Link to="/">
+          <Link to="/projects/suri-ram">
             <StaticImage
               src="../images/Nursery_1.webp"
               alt="Suri-Ram"
@@ -80,11 +84,11 @@ const ProjectsPage = () => {
               onMouseEnter={() => context.cursorChangeHandler("hovered")}
               onMouseLeave={() => context.cursorChangeHandler("")}
             />
-            <span>Suri-Ram</span>
+            <span>suri-ram</span>
           </Link>
         </section>
         <section ref={(el) => imageRef.current.push(el)}>
-          <Link to="/">
+          <Link to="/projects/nautilus">
             <StaticImage
               src="../images/nautilus.webp"
               alt="Nautilus"
@@ -106,7 +110,7 @@ const ProjectsPage = () => {
         <div className={styles.fixed}>
           <div ref={textRef}>
             {exampleData.map((data, id) => (
-              <span key={id} className="test">
+              <span key={id}>
                 {data.title}
               </span>
             ))}

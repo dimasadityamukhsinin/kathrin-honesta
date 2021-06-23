@@ -18,12 +18,13 @@
         justify-content: center;
         height: 50px;
         align-items: center;
+        position: relative;
 
         .toggle & {
             border: 2px solid blue;
         }
 
-        font-size: $font-xs;
+        font-size: $font-xxs;
 
         a {
             pointer-events: auto;
@@ -74,6 +75,25 @@
             }
         }
 
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1075px;
+            width: 100%;
+            padding: 0 60px;
+            
+            &>div {
+                @include respond-to("sm") {
+                    display: none;
+                }
+            }
+    
+            @include respond-to("sm") {
+                padding: 0 20px;
+                padding-bottom: 0 !important;
+            }
+        }
+
         &>div:last-child {
             opacity: 0;
 
@@ -89,7 +109,10 @@
         @include respond-to("sm") {
             justify-content: flex-start;
             position: relative;
-            padding-left: 20px;
+
+            &>div {
+                padding-left: 20px;
+            }
 
             &::before {
                 content: "";

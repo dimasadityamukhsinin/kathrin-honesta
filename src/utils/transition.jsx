@@ -171,19 +171,23 @@ export const transition = ({ content, text, image, type }) => {
       });
 
       if (type === "projects") {
-        content.current.children[0].children[0].removeAttribute("style");
-        for (let i = 0; i < text.current.children.length; i++) {
-          text.current.children[i].removeAttribute("style");
-        }
-        for (let i = 0; i < image.current.length; i++) {
-          if (image.current[i]) {
-            image.current[i].children[0].removeAttribute("style");
+        if (content.current && text.current && image.current) {
+          content.current.children[0].children[0].removeAttribute("style");
+          for (let i = 0; i < text.current.children.length; i++) {
+            text.current.children[i].removeAttribute("style");
+          }
+          for (let i = 0; i < image.current.length; i++) {
+            if (image.current[i]) {
+              image.current[i].children[0].removeAttribute("style");
+            }
           }
         }
       } else if (type === "all") {
-        for (let i = 0; i < content.current.length; i++) {
-          if (content.current[i]) {
-            content.current[i].removeAttribute("style");
+        if (content.current) {
+          for (let i = 0; i < content.current.length; i++) {
+            if (content.current[i]) {
+              content.current[i].removeAttribute("style");
+            }
           }
         }
       }
