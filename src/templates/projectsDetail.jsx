@@ -81,8 +81,6 @@ const ProjectsDetail = (props) => {
               objectFit="contain"
               className="portrait"
               style={{ maxHeight: "100%" }}
-              // onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              // onMouseLeave={() => context.cursorChangeHandler("")}
             />
           </div>
           <div ref={(el) => contentRef.current.push(el)}>
@@ -94,8 +92,6 @@ const ProjectsDetail = (props) => {
               objectFit="contain"
               className="landscape"
               style={{ maxHeight: "100%" }}
-              // onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              // onMouseLeave={() => context.cursorChangeHandler("")}
             />
           </div>
           <p ref={(el) => contentRef.current.push(el)}>
