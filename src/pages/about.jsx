@@ -1,6 +1,7 @@
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import React, { useEffect, useRef } from "react";
-import { StaticImage } from "gatsby-plugin-image";
+import { StaticImage, GatsbyImage } from "gatsby-plugin-image";
+import PortableText from "react-portable-text";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -13,7 +14,7 @@ import * as styles from "../styles/modules/about.module.scss";
 import { useAppContext } from "../context/store";
 import { transition } from "../utils/transition";
 
-const AboutPage = () => {
+const AboutPage = ({ data }) => {
   const context = useAppContext();
   const contentRef = useRef(new Array());
 
@@ -31,125 +32,82 @@ const AboutPage = () => {
       <section id={styles.about}>
         <div />
         <div ref={(el) => contentRef.current.push(el)}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Kathrin
-            Honesta short biography on the website.
-          </p>
+          <PortableText content={data.sanityAbout._rawTitle} />
         </div>
         <div>
           <span>Selected Clients</span>
-          <div className={styles.clients} ref={(el) => contentRef.current.push(el)}>
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="cover"
-            />
+          <div
+            className={styles.clients}
+            ref={(el) => contentRef.current.push(el)}
+          >
+            {data.sanityAbout.selected_clients.map((data, id) => (
+              <GatsbyImage
+                image={data.image.asset.gatsbyImageData}
+                alt={data.name}
+                placeholder="blurred"
+                loading="eager"
+                objectFit="contain"
+              />
+            ))}
           </div>
           <span>Press</span>
           <div className={styles.press}>
-            <Link
-              to="/"
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            >
-              Youtube (2019)
-            </Link>
-            <Link
-              to="/"
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            >
-              FIMA (2018)
-            </Link>
-            <Link
-              to="/"
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            >
-              Tabloit Gadis (2017)
-            </Link>
+            {data.sanityAbout.press.map((data, id) => (
+              <a
+                href={data.link}
+                target="_blank"
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+                key={id}
+              >
+                {data.name}
+              </a>
+            ))}
           </div>
           <span>Contact</span>
           <div className={styles.contact}>
-            <Link
-              to="/"
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            >
-              hello@kathrinhonesta.com
-            </Link>
-            <Link
-              to="/"
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            >
-              behance.net
-            </Link>
-            <Link
-              to="/"
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            >
-              facebook.com
-            </Link>
+            {data.sanityAbout.contact.map((data, id) => (
+              <a
+                href={data.link}
+                target="_blank"
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+                key={id}
+              >
+                {data.name}
+              </a>
+            ))}
           </div>
-          <span>2020 © Kathrin Honesta</span>
+          <span>{data.sanityAbout.footer}</span>
         </div>
       </section>
     </MainLayout>
   );
 };
+
+export const query = graphql`
+  query {
+    sanityAbout {
+      _rawTitle
+      selected_clients {
+        name
+        image {
+          asset {
+            gatsbyImageData(placeholder: BLURRED)
+          }
+        }
+      }
+      press {
+        name
+        link
+      }
+      contact {
+        name
+        link
+      }
+      footer
+    }
+  }
+`;
 
 export default AboutPage;

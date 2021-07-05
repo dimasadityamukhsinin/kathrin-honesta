@@ -1,10 +1,9 @@
 import * as React from "react";
-import { StaticImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { graphql, Link } from "gatsby";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import exampleData from "../../exampleData.json";
+import PortableText from "react-portable-text";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -20,21 +19,21 @@ import { transition } from "../utils/transition";
 // Register Plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-const ProjectsPage = () => {
+const ProjectsPage = ({ data }) => {
   const context = useAppContext();
   const textRef = React.useRef();
   const contentRef = React.useRef();
   const imageRef = React.useRef(new Array());
 
   React.useEffect(() => {
+    // console.log(data.projects.edges);
     // Fungsi transisi
     transition({
       content: contentRef,
       text: textRef,
       image: imageRef,
-      type: "projects"
+      type: "projects",
     });
-
   }, []);
 
   return (
@@ -43,68 +42,34 @@ const ProjectsPage = () => {
       <div id={styles.projects} ref={contentRef}>
         <section className={styles.nChange}>
           <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <PortableText content={data.openClose._rawTop} />
           </div>
         </section>
-        <section ref={(el) => imageRef.current.push(el)}>
-          <Link to="/projects/jessica-watson">
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="contain"
-              style={{ maxHeight: "100%" }}
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            />
-            <span>Jessica Watson</span>
-          </Link>
-        </section>
-        <section ref={(el) => imageRef.current.push(el)}>
-          <Link to="/projects/suri-ram">
-            <StaticImage
-              src="../images/Nursery_1.webp"
-              alt="Suri-Ram"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="contain"
-              style={{ maxHeight: "100%" }}
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            />
-            <span>suri-ram</span>
-          </Link>
-        </section>
-        <section ref={(el) => imageRef.current.push(el)}>
-          <Link to="/projects/nautilus">
-            <StaticImage
-              src="../images/nautilus.webp"
-              alt="Nautilus"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="contain"
-              style={{ maxHeight: "100%" }}
-              onMouseEnter={() => context.cursorChangeHandler("hovered")}
-              onMouseLeave={() => context.cursorChangeHandler("")}
-            />
-            <span>Nautilus</span>
-          </Link>
-        </section>
+        {data.projects.edges.map((data, id) => (
+          <section ref={(el) => imageRef.current.push(el)} key={id}>
+            <Link to={`/projects/${data.node.slug.current}`}>
+              <GatsbyImage
+                image={data.node.thumb.asset.gatsbyImageData}
+                alt={data.node.name}
+                loading="eager"
+                objectFit="contain"
+                style={{ maxHeight: "100%" }}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              />
+              <span>{data.node.name}</span>
+            </Link>
+          </section>
+        ))}
         <section className={styles.nChange}>
           <div>
-            <p>©2020 Kathrin Honesta.</p>
+            <PortableText content={data.openClose._rawFooter} />
           </div>
         </section>
         <div className={styles.fixed}>
           <div ref={textRef}>
-            {exampleData.map((data, id) => (
-              <span key={id}>
-                {data.title}
-              </span>
+            {data.projects.edges.map((data, id) => (
+              <span key={id}>{data.node.name}</span>
             ))}
           </div>
         </div>
@@ -112,5 +77,29 @@ const ProjectsPage = () => {
     </MainLayout>
   );
 };
+
+export const query = graphql`
+  query {
+    projects: allSanityProjectList {
+      edges {
+        node {
+          name
+          slug {
+            current
+          }
+          thumb {
+            asset {
+              gatsbyImageData(placeholder: BLURRED)
+            }
+          }
+        }
+      }
+    }
+    openClose: sanityProjects {
+      _rawTop
+      _rawFooter
+    }
+  }
+`;
 
 export default ProjectsPage;

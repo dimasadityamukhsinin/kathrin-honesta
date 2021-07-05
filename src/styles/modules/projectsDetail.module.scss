@@ -56,36 +56,55 @@
 
     .content {
 
-        p:first-child {
-            font-size: $font-md;
-            margin-bottom: 20px;
-            @include respond-to("md") {
+        .text {
+            max-width: none;
+            margin: 0px;
+            height: auto;
+        }
+
+        .text:first-child {
+            p {
+                font-size: $font-md;
+                margin-bottom: 20px;
+
+                @include respond-to("md") {
+                    font-size: $font-xs;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .text:nth-child(2) {
+            p {
+                font-size: $font-sm;
+
+                @include respond-to("md") {
+                    font-size: $font-xxs;
+                }
+            }
+        }
+
+        .text:nth-child(3) {
+            p {
                 font-size: $font-xs;
-                margin-bottom: 10px;
             }
         }
 
-        p:nth-child(2) {
-            font-size: $font-sm;
-            @include respond-to("md") {
-                font-size: $font-xxs;
+        .text:not(:first-child) {
+            p {
+                margin: 40px 0px;
+
+                @include respond-to("md") {
+                    margin: 10px 0px;
+                }
             }
         }
 
-        p:nth-child(3) {
-            font-size: $font-xs;
-        }
-
-        p:not(:first-child) {
-            margin: 40px 0px;
-            @include respond-to("md") {
-                margin: 10px 0px;
+        .text:last-child {
+            p {
+                font-size: $font-xs;
+                margin-top: 20px;
             }
-        }
-
-        p:last-child {
-            font-size: $font-xs;
-            margin-top: 20px;
         }
 
         &>div {

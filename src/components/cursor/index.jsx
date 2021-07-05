@@ -15,7 +15,7 @@ const CustomCursor = () => {
 
     active = setTimeout(() => {
       document.querySelectorAll(".custom_cursor")[0].classList.add("active");
-    }, 100);
+    }, 500);
   };
 
   const mouseDownHandler = (e) => {

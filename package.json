@@ -17,8 +17,10 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@sanity/client": "^2.11.0",
     "framer-motion": "^4.1.17",
     "gatsby": "^3.8.0",
+    "gatsby-cli": "^3.8.0",
     "gatsby-plugin-image": "^1.8.0",
     "gatsby-plugin-layout": "^2.8.0",
     "gatsby-plugin-mdx": "^2.8.0",
@@ -28,12 +30,14 @@
     "gatsby-plugin-sharp": "^3.8.0",
     "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-source-filesystem": "^3.5.0",
+    "gatsby-source-sanity": "^7.0.7",
     "gatsby-transformer-sharp": "^3.5.0",
     "gsap": "^3.6.1",
     "netlify-cms-app": "^2.15.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-portable-text": "^0.3.0",
     "sass": "^1.32.13"
   }
 }

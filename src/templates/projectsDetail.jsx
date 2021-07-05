@@ -1,5 +1,7 @@
-import { StaticImage } from "gatsby-plugin-image";
+import { graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React, { useRef, useEffect } from "react";
+import PortableText from "react-portable-text";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -33,81 +35,88 @@ const ProjectsDetail = (props) => {
       />
       <div id={styles.projectsDetail}>
         <section ref={(el) => contentRef.current.push(el)}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Kathrin
-            Honesta short biography on the website.
-          </p>
+          <PortableText content={props.data.sanityProjectList._rawTitle} />
         </section>
         <section className={styles.content}>
-          <p ref={(el) => contentRef.current.push(el)}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Kathrin
-            Honesta short biography on the website.
-          </p>
-          <p ref={(el) => contentRef.current.push(el)}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Kathrin
-            Honesta short biography on the website.
-          </p>
-          <p ref={(el) => contentRef.current.push(el)}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            dignissim dolor sem, vitae posuere augue accumsan nec. Curabitur
-            congue nunc et tellus laoreet tempor. Integer molestie facilisis
-            tortor ut tempus. Sed quis efficitur erat. Nunc lobortis urna massa,
-            nec posuere dui fermentum pulvinar. Donec fermentum vel arcu sit
-            amet aliquet. Sed dapibus id nulla ut pharetra. Duis ultricies odio
-            sit amet odio commodo, ac pharetra purus elementum. Sed non nibh sit
-            amet sapien rutrum sollicitudin.
-            <br />
-            <br />
-            Nulla quis rutrum mi, id aliquet orci. Morbi tempus in risus nec
-            rhoncus. Duis eu nisi facilisis, iaculis diam tincidunt, egestas
-            nulla. Nunc feugiat tellus et congue vehicula. Proin vestibulum
-            metus in finibus ullamcorper. Nulla ac hendrerit mauris, placerat
-            ornare dolor. Cras vitae ante eu tellus varius lacinia sed et nisl.
-            Donec ornare, lacus ac sodales hendrerit, mi ante efficitur metus,
-            non suscipit nisi justo a massa. Aenean eu tellus tincidunt,
-            interdum ligula vitae, suscipit ante. In tempor urna nec orci
-            malesuada euismod non ac tellus. Integer consequat cursus mi, id
-            finibus dolor accumsan sed. Nulla facilisi.
-          </p>
-          <div ref={(el) => contentRef.current.push(el)}>
-            <StaticImage
-              src="../images/jessica watson_final.webp"
-              alt="Jessica Watson"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="contain"
-              className="portrait"
-              style={{ maxHeight: "100%" }}
+          <div
+            className={styles.text}
+            ref={(el) => contentRef.current.push(el)}
+          >
+            <PortableText
+              content={props.data.sanityProjectList._rawDescription1}
             />
           </div>
-          <div ref={(el) => contentRef.current.push(el)}>
-            <StaticImage
-              src="../images/Nursery_1.webp"
-              alt="suri-ram"
-              placeholder="blurred"
-              loading="eager"
-              objectFit="contain"
-              className="landscape"
-              style={{ maxHeight: "100%" }}
+          <div
+            className={styles.text}
+            ref={(el) => contentRef.current.push(el)}
+          >
+            <PortableText
+              content={props.data.sanityProjectList._rawDescription2}
             />
           </div>
-          <p ref={(el) => contentRef.current.push(el)}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            dignissim dolor sem, vitae posuere augue accumsan nec. Curabitur
-            congue nunc et tellus laoreet tempor. Integer molestie facilisis
-            tortor ut tempus. Sed quis efficitur erat. Nunc lobortis urna massa,
-            nec posuere dui fermentum pulvinar. Donec fermentum vel arcu sit
-            amet aliquet. Sed dapibus id nulla ut pharetra. Duis ultricies odio
-            sit amet odio commodo, ac pharetra purus elementum. Sed non nibh sit
-            amet sapien rutrum sollicitudin.
-          </p>
+          <div
+            className={styles.text}
+            ref={(el) => contentRef.current.push(el)}
+          >
+            <PortableText
+              content={props.data.sanityProjectList._rawDescription3}
+            />
+          </div>
+          {props.data.sanityProjectList.images.map((data, id) => (
+            <div ref={(el) => contentRef.current.push(el)} key={id}>
+              <GatsbyImage
+                image={data.image.asset.gatsbyImageData}
+                alt={data.name}
+                loading="eager"
+                objectFit="contain"
+                style={{ maxHeight: "100%" }}
+              />
+            </div>
+          ))}
+          <div
+            className={styles.text}
+            ref={(el) => contentRef.current.push(el)}
+          >
+            <PortableText
+              content={props.data.sanityProjectList._rawDescription4}
+            />
+          </div>
         </section>
       </div>
     </MainLayout>
   );
 };
+
+export const query = graphql`
+  query Projects($slug: String!) {
+    sanityProjectList(slug: { current: { eq: $slug } }) {
+      name
+      slug {
+        current
+      }
+      _rawTitle
+      seo {
+        seo_image {
+          asset {
+            gatsbyImageData(placeholder: BLURRED)
+          }
+        }
+        seo_description
+      }
+      _rawDescription1
+      _rawDescription2
+      _rawDescription3
+      _rawDescription4
+      images {
+        name
+        image {
+          asset {
+            gatsbyImageData(placeholder: BLURRED)
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default ProjectsDetail;
