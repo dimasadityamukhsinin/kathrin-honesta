@@ -1,7 +1,9 @@
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React, { useRef, useEffect } from "react";
 import PortableText from "react-portable-text";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -12,8 +14,14 @@ import * as styles from "../styles/modules/projectsDetail.module.scss";
 
 // Function
 import { transition } from "../utils/transition";
+import scrollToTop from "../utils/scrollToTop";
+import { useAppContext } from "../context/store";
+
+// Register Plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsDetail = (props) => {
+  const context = useAppContext();
   const contentRef = useRef(new Array());
 
   useEffect(() => {
@@ -22,6 +30,12 @@ const ProjectsDetail = (props) => {
       content: contentRef,
       type: "all",
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        t.kill();
+      });
+    }
   }, []);
 
   return (
@@ -29,18 +43,14 @@ const ProjectsDetail = (props) => {
       <NavScroll
         topTitle="Back to Projects"
         topLink="projects"
-        backTop={true}
-        prev={props.pageContext.prev}
-        next={props.pageContext.next}
       />
-      <div id={styles.projectsDetail}>
-        <section ref={(el) => contentRef.current.push(el)}>
+      <div id={styles.projectsDetail} className="content">
+        <section>
           <PortableText content={props.data.sanityProjectList._rawTitle} />
         </section>
         <section className={styles.content}>
           <div
             className={styles.text}
-            ref={(el) => contentRef.current.push(el)}
           >
             <PortableText
               content={props.data.sanityProjectList._rawDescription1}
@@ -48,7 +58,6 @@ const ProjectsDetail = (props) => {
           </div>
           <div
             className={styles.text}
-            ref={(el) => contentRef.current.push(el)}
           >
             <PortableText
               content={props.data.sanityProjectList._rawDescription2}
@@ -56,7 +65,6 @@ const ProjectsDetail = (props) => {
           </div>
           <div
             className={styles.text}
-            ref={(el) => contentRef.current.push(el)}
           >
             <PortableText
               content={props.data.sanityProjectList._rawDescription3}
@@ -75,11 +83,43 @@ const ProjectsDetail = (props) => {
           ))}
           <div
             className={styles.text}
-            ref={(el) => contentRef.current.push(el)}
           >
             <PortableText
               content={props.data.sanityProjectList._rawDescription4}
             />
+          </div>
+        </section>
+        <section className={styles.footer}>
+          <div>
+            {props.pageContext.prev ? (
+              <Link
+                to={`/projects/${props.pageContext.prev}`}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              >
+                Previous Project
+              </Link>
+            ) : (
+              <div />
+            )}
+            <button
+              onClick={() => scrollToTop()}
+              onMouseEnter={() => context.cursorChangeHandler("hovered")}
+              onMouseLeave={() => context.cursorChangeHandler("")}
+            >
+              Back to Top
+            </button>
+            {props.pageContext.next ? (
+              <Link
+                to={`/projects/${props.pageContext.next}`}
+                onMouseEnter={() => context.cursorChangeHandler("hovered")}
+                onMouseLeave={() => context.cursorChangeHandler("")}
+              >
+                Next Project
+              </Link>
+            ) : (
+              <div />
+            )}
           </div>
         </section>
       </div>

@@ -26,7 +26,6 @@ const ProjectsPage = ({ data }) => {
   const imageRef = React.useRef(new Array());
 
   React.useEffect(() => {
-    // console.log(data.projects.edges);
     // Fungsi transisi
     transition({
       content: contentRef,
@@ -34,12 +33,25 @@ const ProjectsPage = ({ data }) => {
       image: imageRef,
       type: "projects",
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        t.kill();
+      });
+    }
   }, []);
 
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} />
-      <div id={styles.projects} ref={contentRef}>
+      <div className={styles.fixed} id="fixed">
+        <div ref={textRef}>
+          {data.projects.edges.map((data, id) => (
+            <span key={id}>{data.node.name}</span>
+          ))}
+        </div>
+      </div>
+      <div id={styles.projects} className="content" ref={contentRef}>
         <section className={styles.nChange}>
           <div>
             <PortableText content={data.openClose._rawTop} />
@@ -66,13 +78,6 @@ const ProjectsPage = ({ data }) => {
             <PortableText content={data.openClose._rawFooter} />
           </div>
         </section>
-        <div className={styles.fixed}>
-          <div ref={textRef}>
-            {data.projects.edges.map((data, id) => (
-              <span key={id}>{data.node.name}</span>
-            ))}
-          </div>
-        </div>
       </div>
     </MainLayout>
   );

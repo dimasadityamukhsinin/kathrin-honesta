@@ -1,4 +1,4 @@
-@import '../components/variables';
+@import "../components/variables";
 
 #about {
     padding: 50px 0px;
@@ -7,14 +7,13 @@
         border: 1px solid red;
     }
 
-    &>div {
+    & > div {
         body:global(.toggle) & {
             border: 1px solid blue;
         }
     }
 
-    &>div:first-child {
-
+    & > div:first-child {
         &::before {
             content: "";
             display: block;
@@ -36,7 +35,7 @@
         }
     }
 
-    &>div:nth-child(2) {
+    & > div:nth-child(2) {
         height: 100vh;
         width: 100%;
         display: flex;
@@ -67,7 +66,7 @@
         }
     }
 
-    &>div:nth-child(3) {
+    .clients {
         max-width: 1075px;
         margin: 0 auto;
 
@@ -99,12 +98,7 @@
             }
         }
 
-        span:last-child {
-            font-size: $font-xxs;
-            font-family: 'Acumin Pro';
-        }
-
-        .clients {
+        & > div:last-child {
             margin: 0 120px;
             padding-bottom: 40px;
             display: flex;
@@ -126,8 +120,41 @@
                 padding-bottom: 20px;
             }
         }
+    }
 
-        .press {
+    .press {
+        max-width: 1075px;
+        margin: 0 auto;
+
+        @include respond-to("xl") {
+            padding-bottom: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @include respond-to("sm") {
+            padding-bottom: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        span {
+            display: block;
+            text-align: center;
+            font-size: $font-md;
+            font-family: "Adobe Jenson Pro";
+            padding-top: 40px;
+            padding-bottom: 10px;
+
+            @include respond-to("sm") {
+                padding-top: 20px;
+                font-size: $font-sm;
+                text-align: start;
+            }
+        }
+
+        & > div:last-child {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -153,17 +180,50 @@
 
                 @include respond-to("sm") {
                     padding-top: 10px;
-                    opacity: .75;
+                    opacity: 0.75;
 
                     &:hover {
                         opacity: 1;
-                        transition: .5s;
+                        transition: 0.5s;
                     }
                 }
             }
         }
+    }
 
-        .contact {
+    .contact {
+        max-width: 1075px;
+        margin: 0 auto;
+
+        @include respond-to("xl") {
+            padding-bottom: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @include respond-to("sm") {
+            padding-bottom: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        span {
+            display: block;
+            text-align: center;
+            font-size: $font-md;
+            font-family: "Adobe Jenson Pro";
+            padding-top: 40px;
+            padding-bottom: 10px;
+
+            @include respond-to("sm") {
+                padding-top: 20px;
+                font-size: $font-sm;
+                text-align: start;
+            }
+        }
+
+        & > div:last-child {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -189,13 +249,46 @@
 
                 @include respond-to("sm") {
                     padding-top: 10px;
-                    opacity: .75;
+                    opacity: 0.75;
 
                     &:hover {
                         opacity: 1;
-                        transition: .5s;
+                        transition: 0.5s;
                     }
                 }
+            }
+        }
+    }
+
+    .footer {
+        max-width: 1075px;
+        margin: 0 auto;
+
+        @include respond-to("xl") {
+            padding-bottom: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @include respond-to("sm") {
+            padding-bottom: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 0;
+        }
+        span {
+            display: block;
+            font-size: $font-xxs;
+            font-family: "Acumin Pro";
+            padding-top: 40px;
+            padding-bottom: 10px;
+            padding-top: 40px;
+            padding-bottom: 10px;
+            text-align: center;
+
+            @include respond-to("sm") {
+                padding-top: 20px;
+                text-align: start;
             }
         }
     }

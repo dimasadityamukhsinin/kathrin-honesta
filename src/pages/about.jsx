@@ -1,7 +1,9 @@
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import React, { useEffect, useRef } from "react";
-import { StaticImage, GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import PortableText from "react-portable-text";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -14,6 +16,9 @@ import * as styles from "../styles/modules/about.module.scss";
 import { useAppContext } from "../context/store";
 import { transition } from "../utils/transition";
 
+// Register Plugin ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
 const AboutPage = ({ data }) => {
   const context = useAppContext();
   const contentRef = useRef(new Array());
@@ -24,37 +29,49 @@ const AboutPage = ({ data }) => {
       content: contentRef,
       type: "all",
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        t.kill();
+      });
+    }
   }, []);
 
   return (
     <MainLayout pageTitle="About">
       <NavScroll topTitle="Close" topLink="projects" />
-      <section id={styles.about}>
+      <section id={styles.about} className="content">
         <div />
         <div ref={(el) => contentRef.current.push(el)}>
           <PortableText content={data.sanityAbout._rawTitle} />
         </div>
-        <div>
-          <span>Selected Clients</span>
-          <div
-            className={styles.clients}
-            ref={(el) => contentRef.current.push(el)}
-          >
+        <div
+          className={styles.clients}
+          ref={(el) => contentRef.current.push(el)}
+        >
+          <div>
+            <span>Selected Clients</span></div>
+          <div>
             {data.sanityAbout.selected_clients.map((data, id) => (
               <GatsbyImage
+                key={id}
                 image={data.image.asset.gatsbyImageData}
                 alt={data.name}
                 placeholder="blurred"
                 loading="eager"
                 objectFit="contain"
               />
-            ))}
+            ))}</div>
+        </div>
+        <div className={styles.press} ref={(el) => contentRef.current.push(el)}>
+          <div>
+            <span>Press</span>
           </div>
-          <span>Press</span>
-          <div className={styles.press}>
+          <div>
             {data.sanityAbout.press.map((data, id) => (
               <a
                 href={data.link}
+                rel="noreferrer"
                 target="_blank"
                 onMouseEnter={() => context.cursorChangeHandler("hovered")}
                 onMouseLeave={() => context.cursorChangeHandler("")}
@@ -64,11 +81,16 @@ const AboutPage = ({ data }) => {
               </a>
             ))}
           </div>
-          <span>Contact</span>
-          <div className={styles.contact}>
+        </div>
+        <div className={styles.contact} ref={(el) => contentRef.current.push(el)}>
+          <div>
+            <span>Contact</span>
+          </div>
+          <div>
             {data.sanityAbout.contact.map((data, id) => (
               <a
                 href={data.link}
+                rel="noreferrer"
                 target="_blank"
                 onMouseEnter={() => context.cursorChangeHandler("hovered")}
                 onMouseLeave={() => context.cursorChangeHandler("")}
@@ -78,8 +100,11 @@ const AboutPage = ({ data }) => {
               </a>
             ))}
           </div>
+        </div>
+        <div className={styles.footer}>
           <span>{data.sanityAbout.footer}</span>
         </div>
+        {/* </div> */}
       </section>
     </MainLayout>
   );

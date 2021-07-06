@@ -96,6 +96,7 @@
 
         &>div:last-child {
             opacity: 0;
+            transition: opacity .5s;
 
             @include respond-to("sm") {
                 padding-bottom: 60px;
@@ -138,6 +139,7 @@
 
         &>div:last-child {
             opacity: 1 !important;
+            transition: opacity .5s;
             animation: scrollEnd .5s linear !important;
 
             button {

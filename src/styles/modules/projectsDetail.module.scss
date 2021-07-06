@@ -1,9 +1,7 @@
-@import '../components/variables';
+@import "../components/variables";
 
 #projectsDetail {
-    padding-bottom: 100px;
-
-    &>section:first-child {
+    & > section:first-child {
         height: 100vh;
         width: 100%;
 
@@ -19,7 +17,7 @@
         }
     }
 
-    &>section {
+    & > section:not(:last-child) {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -55,7 +53,6 @@
     }
 
     .content {
-
         .text {
             max-width: none;
             margin: 0px;
@@ -107,7 +104,7 @@
             }
         }
 
-        &>div {
+        & > div {
             max-width: 1075px;
             margin: 30px 0px;
             height: 80vh;
@@ -119,6 +116,40 @@
 
             body:global(.toggle) & {
                 border: solid thin red;
+            }
+        }
+    }
+
+    .footer {
+        margin-top: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 50px;
+        align-items: center;
+        position: relative;
+        font-size: 14px;
+
+        & > div {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1075px;
+            width: 100%;
+            padding: 0 60px;
+
+            a {
+                color: $color-black;
+            }
+
+            & > div {
+                @include respond-to("sm") {
+                    display: none;
+                }
+            }
+
+            @include respond-to("sm") {
+                padding: 0 20px;
+                padding-bottom: 0 !important;
             }
         }
     }

@@ -37,6 +37,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-indiana-drag-scroll": "^2.0.1",
     "react-portable-text": "^0.3.0",
     "sass": "^1.32.13"
   }

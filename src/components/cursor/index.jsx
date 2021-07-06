@@ -15,7 +15,7 @@ const CustomCursor = () => {
 
     active = setTimeout(() => {
       document.querySelectorAll(".custom_cursor")[0].classList.add("active");
-    }, 500);
+    }, 600);
   };
 
   const mouseDownHandler = (e) => {
@@ -56,7 +56,6 @@ const CustomCursor = () => {
       <div
         className={"ring " + context.cursorType}
         ref={ringRef}
-        // style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
       ></div>
     </div>
   );

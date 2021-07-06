@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 
 import { useAppContext } from "../context/store";
+import scrollToTop from "../utils/scrollToTop";
 
 const NavScroll = ({
   topTitle,
@@ -12,15 +13,6 @@ const NavScroll = ({
 }) => {
   const [scrollEnd, setScrollEnd] = useState(false);
   const context = useAppContext();
-
-  // Scroll to Top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
 
   // Window Height
   const windowHeight = () =>

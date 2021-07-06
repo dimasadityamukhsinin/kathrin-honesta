@@ -11,9 +11,9 @@ const MainLayout = ({ pageTitle, children }) => {
   const PageTitle = pageTitle
     ? `${pageTitle} ⟡ Kathrin Honesta Portfolio Website`
     : "Kathrin Honesta Portfolio Website";
-    const context = useAppContext();
+  const context = useAppContext();
 
-  const duration = 0.35;
+  const duration = 0.5;
   const variant = {
     initial: {
       opacity: 0,
@@ -55,7 +55,6 @@ const MainLayout = ({ pageTitle, children }) => {
 
   return (
     <>
-      <CustomCursor />
       <motion.main
         variants={variant}
         initial="initial"
@@ -70,6 +69,7 @@ const MainLayout = ({ pageTitle, children }) => {
             content="width=device-width, initial-scale=1,viewport-fit=cover"
           />
         </Helmet>
+        <CustomCursor />
         <Navigation />
         {children}
       </motion.main>

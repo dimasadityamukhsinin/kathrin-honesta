@@ -18,5 +18,5 @@ export const wrapRootElement = (props) => (
 
 // Fungsi smooth scroll
 export const onClientEntry = () => {
-  SmoothScroll(document, 46, 30);
+  // SmoothScroll(document, 46, 30);
 };
