@@ -10,6 +10,7 @@ import CustomCursor from "../cursor";
 // Function
 import { useAppContext } from "../../context/store";
 import checkCursor from "../../utils/checkCursor";
+import topResize from "../../utils/topResize";
 
 const MainLayout = ({ pageTitle, children }) => {
   const data = useStaticQuery(
@@ -48,7 +49,7 @@ const MainLayout = ({ pageTitle, children }) => {
   useEffect(() => {
     checkCursor();
 
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    topResize();
     window.addEventListener("resize", checkCursor, false);
 
     return () => {
