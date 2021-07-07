@@ -1,7 +1,7 @@
 const path = require(`path`);
 const exampleData = require("./exampleData.json");
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, page }) => {
   const { createPage } = actions;
 
   const projects = await graphql(`
@@ -19,9 +19,8 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  if(projects.data.allSanityProjectList.edges) {
+  if (projects.data.allSanityProjectList.edges) {
     projects.data.allSanityProjectList.edges.forEach((data, id) => {
-      console.log(data.node.slug.current)
       if (id === 0) {
         createPage({
           path: `/projects/${data.node.slug.current}`,
@@ -56,37 +55,12 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   }
 
-  // exampleData.forEach((data, id) => {
-  //   if (id === 0) {
-  //     createPage({
-  //       path: `/projects/${data.slug}`,
-  //       component: path.resolve("./src/templates/projectsDetail.jsx"),
-  //       context: {
-  //         slug: data.slug,
-  //         prev: null,
-  //         next: exampleData[id + 1].slug,
-  //       },
-  //     });
-  //   } else if (id + 1 === exampleData.length) {
-  //     createPage({
-  //       path: `/projects/${data.slug}`,
-  //       component: path.resolve("./src/templates/projectsDetail.jsx"),
-  //       context: {
-  //         slug: data.slug,
-  //         prev: exampleData[id - 1].slug,
-  //         next: null,
-  //       },
-  //     });
-  //   } else {
-  //     createPage({
-  //       path: `/projects/${data.slug}`,
-  //       component: path.resolve("./src/templates/projectsDetail.jsx"),
-  //       context: {
-  //         slug: data.slug,
-  //         prev: exampleData[id - 1].slug,
-  //         next: exampleData[id + 1].slug,
-  //       },
-  //     });
-  //   }
-  // });
+  // if(page.path.startsWith('/404')) {
+  //   page.layout= "./src/pages/404.js";
+  // }
+
+  // createPage({
+  //   path: `/404.html`,
+  //   component: path.resolve("./src/pages/404.js"),
+  // })
 };

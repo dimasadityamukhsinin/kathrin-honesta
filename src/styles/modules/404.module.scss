@@ -1,0 +1,37 @@
+@import "../components/variables";
+
+#notfound {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    @include respond-to("lg") {
+        padding: 60px;
+    }
+
+    @include respond-to("sm") {
+        min-height: 80vh;
+        height: auto;
+        padding: 20px;
+        text-align: left !important;
+    }
+
+    & > div {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        p {
+            font-size: 60px;
+            font-family: "Adobe Jenson Pro";
+            max-width: 1075px;
+
+            @include respond-to("md") {
+                font-size: 42px;
+            }
+        }
+    }
+}

@@ -15,7 +15,7 @@ const CustomCursor = () => {
 
     active = setTimeout(() => {
       document.querySelectorAll(".custom_cursor")[0].classList.add("active");
-    }, 600);
+    }, 400);
   };
 
   const mouseDownHandler = (e) => {
@@ -45,7 +45,7 @@ const CustomCursor = () => {
 
   return (
     <div className="custom_cursor">
-      <div className={"cursor " + context.cursorType} ref={cursorRef}>
+      <div className={`cursor ${context && context.cursorType}`} ref={cursorRef}>
         <svg width="8" height="8" viewBox="0 0 8 8">
           <path
             d="M4.424 0.856003C4.088 0.856003 3.944 1.09601 3.56 1.72001C2.84 2.96801 2.744 3.064 1.496 3.448C1.16 3.592 0.728 3.928 0.728 4.168C0.728 4.312 0.968 4.552 1.304 4.744C2.024 5.128 2.456 5.41601 2.84 6.08801C3.464 7.19201 3.8 7.81601 4.28 7.81601C4.472 7.81601 4.568 7.672 4.664 7.432C5.576 5.464 5.576 5.416 7.064 4.792C7.304 4.648 7.352 4.69601 7.352 4.45601C7.352 4.16801 7.16 4.072 6.68 3.736C5.624 3.064 5.384 2.728 4.952 1.48C4.712 1.048 4.52 0.856003 4.424 0.856003Z"
@@ -54,7 +54,7 @@ const CustomCursor = () => {
         </svg>
       </div>
       <div
-        className={"ring " + context.cursorType}
+        className={`ring ${context && context.cursorType}`}
         ref={ringRef}
       ></div>
     </div>

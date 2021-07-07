@@ -76,8 +76,8 @@ export const transition = ({ content, text, image, type }) => {
 
   ScrollTrigger.matchMedia({
     "(min-width: 768px)": () => {
-      smoothScroll(".content");
       if (type === "projects") {
+        smoothScroll(".content");
         if (content.current && text.current && image.current) {
           // Fade out text pertama
           gsap.fromTo(
@@ -190,6 +190,7 @@ export const transition = ({ content, text, image, type }) => {
           });
         }
       } else if (type === "all") {
+        smoothScroll(".content");
         if (content.current) {
           // looping data
           gsap.utils.toArray(content.current).forEach((section, id) => {

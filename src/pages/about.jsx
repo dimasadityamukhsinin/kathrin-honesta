@@ -31,6 +31,7 @@ const AboutPage = ({ data }) => {
     });
 
     return () => {
+      // Remove semua scroll trigger
       ScrollTrigger.getAll().forEach((t) => {
         t.kill();
       });

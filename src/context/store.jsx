@@ -30,9 +30,5 @@ export function AppWrapper({ children }) {
 export function useAppContext() {
   const context = useContext(AppContext);
 
-  if (!context) {
-    console.error("Error deploying App Context!!!");
-  }
-
   return context;
 }

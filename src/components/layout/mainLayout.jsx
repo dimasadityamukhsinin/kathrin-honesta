@@ -27,7 +27,7 @@ const MainLayout = ({ pageTitle, children }) => {
     },
     exit: {
       opacity: 0,
-      transition: { duration: duration },
+      transition: { duration: 0.3 },
     },
   };
 
