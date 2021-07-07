@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PortableText from "react-portable-text";
+import { Helmet } from "react-helmet";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -45,6 +46,24 @@ const ProjectsPage = ({ data }) => {
   return (
     <MainLayout pageTitle="Projects">
       <NavScroll topTitle="Info" topLink="about" backTop={true} />
+      <Helmet>
+        <meta name='description' content={data.seo.seo.seo_description} />
+        <meta name='image' content={data.seo.seo.seo_image.asset.url} />
+        {/* <meta property='og:url' content="" /> */}
+        <meta
+          property='og:title'
+          content={`Projects ⟡ ${data.seo.webTitle}`}
+        />
+        <meta property='og:description' content={data.seo.seo.seo_description} />
+        <meta property='og:image' content={data.seo.seo.seo_image.asset.url} />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta
+          property='twitter:title'
+          content={`Projects ⟡ ${data.seo.webTitle}`}
+        />
+        <meta name='twitter:description' content={data.seo.seo.seo_description} />
+        <meta name='twitter:image' content={data.seo.seo.seo_image.asset.url} />
+      </Helmet>
       <div className={styles.fixed} id="fixed">
         <div ref={textRef}>
           {data.projects.edges.map((data, id) => (
@@ -104,6 +123,17 @@ export const query = graphql`
     openClose: sanityProjects {
       _rawTop
       _rawFooter
+    }
+    seo: sanityGeneral {
+      webTitle
+      seo {
+        seo_description
+        seo_image {
+          asset {
+            url
+          }
+        }
+      }
     }
   }
 `;

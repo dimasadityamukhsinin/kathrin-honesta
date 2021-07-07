@@ -3,7 +3,6 @@ import React, { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  const [mobile, setMobile] = useState(false);
   // Detect cursor hover
   const cursorHover = React.useRef(null);
   const [cursorType, setCursorType] = useState("");
@@ -16,12 +15,10 @@ export function AppWrapper({ children }) {
   const values = React.useMemo(
     () => ({
       cursorHover,
-      mobile,
-      setMobile,
       cursorType,
       cursorChangeHandler
     }),
-    [mobile, cursorHover, cursorType]
+    [cursorHover, cursorType]
   );
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;

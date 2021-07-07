@@ -3,7 +3,6 @@ import "./src/styles/global.scss";
 
 import React from "react";
 import { AppWrapper } from "./src/context/store";
-import SmoothScroll from "./src/components/smooth";
 import { AnimatePresence } from "framer-motion";
 
 // Wrap dengan animation

@@ -1,15 +1,29 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { graphql, useStaticQuery } from "gatsby";
 
+// Layout
 import Navigation from "../navigation";
 import CustomCursor from "../cursor";
+
+// Function
 import { useAppContext } from "../../context/store";
 import checkCursor from "../../utils/checkCursor";
 
 const MainLayout = ({ pageTitle, children }) => {
-  const PageTitle = pageTitle
-    ? `${pageTitle} ⟡ Kathrin Honesta Portfolio Website`
+  const data = useStaticQuery(
+    graphql`
+      query {
+        seo: sanityGeneral {
+          webTitle
+        }
+      }
+    `
+  );
+
+  const PageTitle = pageTitle && data.seo.webTitle
+    ? `${pageTitle} ⟡ ${data.seo.webTitle}`
     : "Kathrin Honesta Portfolio Website";
   const context = useAppContext();
 
@@ -31,24 +45,13 @@ const MainLayout = ({ pageTitle, children }) => {
     },
   };
 
-  const checkMobile = () => {
-    if (window.innerWidth <= 576) {
-      context.setMobile(true);
-    } else {
-      context.setMobile(false);
-    }
-  };
-
   useEffect(() => {
-    checkMobile();
     checkCursor();
 
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    window.addEventListener("resize", checkMobile, false);
     window.addEventListener("resize", checkCursor, false);
 
     return () => {
-      window.removeEventListener("resize", checkMobile, false);
       window.removeEventListener("resize", checkCursor, false);
     };
   }, []);
@@ -63,6 +66,7 @@ const MainLayout = ({ pageTitle, children }) => {
         id="container"
       >
         <Helmet>
+          <meta charSet='utf-8' />
           <title>{PageTitle}</title>
           <meta
             name="viewport"

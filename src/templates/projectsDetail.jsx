@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import PortableText from "react-portable-text";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Helmet } from "react-helmet";
 
 // Layout
 import MainLayout from "../components/layout/mainLayout";
@@ -39,11 +40,29 @@ const ProjectsDetail = (props) => {
   }, []);
 
   return (
-    <MainLayout pageTitle="Kathrin Projects">
+    <MainLayout pageTitle={props.data.sanityProjectList.name}>
       <NavScroll
         topTitle="Back to Projects"
         topLink="projects"
       />
+      <Helmet>
+        <meta name='description' content={props.data.sanityProjectList.seo.seo_description} />
+        <meta name='image' content={props.data.sanityProjectList.seo.seo_image.asset.url} />
+        {/* <meta property='og:url' content="" /> */}
+        <meta
+          property='og:title'
+          content={`${props.data.sanityProjectList.name} ⟡ ${props.data.general.webTitle}`}
+        />
+        <meta property='og:description' content={props.data.sanityProjectList.seo.seo_description} />
+        <meta property='og:image' content={props.data.sanityProjectList.seo.seo_image.asset.url} />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta
+          property='twitter:title'
+          content={`${props.data.sanityProjectList.name} ⟡ ${props.data.general.webTitle}`}
+        />
+        <meta name='twitter:description' content={props.data.sanityProjectList.seo.seo_description} />
+        <meta name='twitter:image' content={props.data.sanityProjectList.seo.seo_image.asset.url} />
+      </Helmet>
       <div id={styles.projectsDetail} className="content">
         <section>
           <PortableText content={props.data.sanityProjectList._rawTitle} />
@@ -138,7 +157,7 @@ export const query = graphql`
       seo {
         seo_image {
           asset {
-            gatsbyImageData(placeholder: BLURRED)
+            url
           }
         }
         seo_description
@@ -155,6 +174,9 @@ export const query = graphql`
           }
         }
       }
+    }
+    general: sanityGeneral {
+      webTitle
     }
   }
 `;
