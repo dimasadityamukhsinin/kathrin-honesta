@@ -8,11 +8,11 @@ import Navigation from "../navigation";
 import CustomCursor from "../cursor";
 
 // Function
-import { useAppContext } from "../../context/store";
 import checkCursor from "../../utils/checkCursor";
 import topResize from "../../utils/topResize";
 
 const MainLayout = ({ pageTitle, children }) => {
+  // Data seo
   const data = useStaticQuery(
     graphql`
       query {
@@ -26,7 +26,6 @@ const MainLayout = ({ pageTitle, children }) => {
   const PageTitle = pageTitle && data.seo.webTitle
     ? `${pageTitle} ⟡ ${data.seo.webTitle}`
     : "Kathrin Honesta Portfolio Website";
-  const context = useAppContext();
 
   const duration = 0.5;
   const variant = {
