@@ -4,7 +4,6 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   // Detect cursor hover
-  const cursorHover = React.useRef(null);
   const [cursorType, setCursorType] = useState("");
 
   // Detect cursor
@@ -14,11 +13,10 @@ export function AppWrapper({ children }) {
 
   const values = React.useMemo(
     () => ({
-      cursorHover,
       cursorType,
       cursorChangeHandler
     }),
-    [cursorHover, cursorType]
+    [cursorType]
   );
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
