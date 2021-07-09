@@ -15,7 +15,7 @@ import * as styles from "../styles/modules/about.module.scss";
 
 // Function
 import { useAppContext } from "../context/store";
-import { transition } from "../utils/transition";
+// import { transition } from "../utils/transition";
 
 // Register Plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -26,10 +26,10 @@ const AboutPage = ({ data }) => {
 
   useEffect(() => {
     // Fungsi transisi
-    transition({
-      content: contentRef,
-      type: "all",
-    });
+    // transition({
+    //   content: contentRef,
+    //   type: "all",
+    // });
 
     return () => {
       // Remove semua scroll trigger

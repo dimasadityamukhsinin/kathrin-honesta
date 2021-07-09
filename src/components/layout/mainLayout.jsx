@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { graphql, useStaticQuery } from "gatsby";
+import ASScroll from '@ashthornton/asscroll';
 
 // Layout
 import Navigation from "../navigation";
@@ -45,13 +46,19 @@ const MainLayout = ({ pageTitle, children }) => {
     },
   };
 
+
   useEffect(() => {
+    const asscroll = new ASScroll();
+    asscroll.enable();
+    console.log('enable');
     checkCursor();
 
     topResize();
     window.addEventListener("resize", checkCursor, false);
 
     return () => {
+      asscroll.disable();
+      console.log('disable');
       window.removeEventListener("resize", checkCursor, false);
     };
   }, []);

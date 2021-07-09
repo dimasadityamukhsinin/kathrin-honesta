@@ -15,7 +15,7 @@ import * as styles from "../styles/modules/projects.module.scss";
 
 // Function
 import { useAppContext } from "../context/store";
-import { transition } from "../utils/transition";
+// import { transition } from "../utils/transition";
 
 // Register Plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -28,12 +28,12 @@ const ProjectsPage = ({ data }) => {
 
   React.useEffect(() => {
     // Fungsi transisi
-    transition({
-      content: contentRef,
-      text: textRef,
-      image: imageRef,
-      type: "projects",
-    });
+    // transition({
+    //   content: contentRef,
+    //   text: textRef,
+    //   image: imageRef,
+    //   type: "projects",
+    // });
 
     return () => {
       // Remove semua scroll trigger
