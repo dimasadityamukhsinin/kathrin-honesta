@@ -76,6 +76,9 @@ export const transition = ({ content, text, image, type }) => {
 
   ScrollTrigger.matchMedia({
     "(min-width: 768px)": () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        t.kill();
+      });
       if (type === "projects") {
         smoothScroll(".content");
         if (content.current && text.current && image.current) {
@@ -129,7 +132,7 @@ export const transition = ({ content, text, image, type }) => {
                 scrollTrigger: {
                   trigger: content.current.children[0],
                   start: "top 20%",
-                  end: "bottom 30%",
+                  end: "bottom 10%",
                   scrub: true,
                 },
               });
@@ -148,8 +151,8 @@ export const transition = ({ content, text, image, type }) => {
                 const tlText = gsap.timeline({
                   scrollTrigger: {
                     trigger: content.current.children[id],
-                    start: "top 30%",
-                    end: "bottom 30%",
+                    start: "top 40%",
+                    end: "bottom 0%",
                     scrub: true,
                   },
                 });
@@ -171,8 +174,8 @@ export const transition = ({ content, text, image, type }) => {
               const tlImage = gsap.timeline({
                 scrollTrigger: {
                   trigger: section,
-                  start: "top 70%",
-                  end: "bottom 55%",
+                  start: "top 50%",
+                  end: "bottom 30%",
                   scrub: true,
                 },
               });
@@ -224,8 +227,8 @@ export const transition = ({ content, text, image, type }) => {
         t.kill();
       });
 
-      document.querySelector("#container").removeAttribute("style");
-      document.querySelector(".content").removeAttribute("style");
+      // document.querySelector("#container").removeAttribute("style");
+      // document.querySelector(".content").removeAttribute("style");
 
       if (type === "projects") {
         if (content.current && text.current && image.current) {

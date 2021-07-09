@@ -15,6 +15,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@ashthornton/asscroll": "^2.0.1",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@sanity/client": "^2.11.0",
@@ -37,7 +38,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "react-indiana-drag-scroll": "^2.0.1",
     "react-portable-text": "^0.3.0",
     "sass": "^1.32.13"
   }
